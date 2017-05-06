@@ -11,13 +11,13 @@ import UIKit
 import QuartzCore
 
 class RhProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var zoneTextField: UITextField!
     @IBOutlet weak var downArrow: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
-    
+
     var values = ["East", "West", "North", "South"]
     let cellReuseIdentifier = "cell"
     override func viewDidLoad() {
@@ -34,7 +34,7 @@ class RhProfileViewController: UIViewController, UITableViewDataSource, UITableV
         //let profilePicture = UIImage(named:"face")!
         //self.profileImageView.image = profilePicture.circleMasked
     }
-    
+
     @IBAction func dropDown(_ sender: Any) {
         tableView.isHidden = !tableView.isHidden
         if tableView.isHidden == false {
@@ -42,26 +42,27 @@ class RhProfileViewController: UIViewController, UITableViewDataSource, UITableV
         } else {
             downArrow.setBackgroundImage(UIImage(named:"down"), for: .normal)
         }
-        
+
     }
     // MARK: UITableViewDataSource
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return values.count;
+        return values.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier)
+                                                                  as UITableViewCell!
         // Set text from the data model
         cell.textLabel?.text = values[indexPath.row]
         cell.textLabel?.font = zoneTextField.font
         return cell
     }
-    
+
     // MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Row selected, so set textField to relevant value, hide tableView
@@ -70,7 +71,7 @@ class RhProfileViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.isHidden = true
         downArrow.setBackgroundImage(UIImage(named:"down"), for: .normal)
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.0
     }

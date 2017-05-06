@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 class RhRegisterViewController: RhBaseViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var registertButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -29,11 +28,11 @@ class RhRegisterViewController: RhBaseViewController, UITableViewDataSource, UIT
         self.title = "Sign Up"
         self.registertButton.backgroundColor = UIColor.rhGreen
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-        
+
     @IBAction func dropDown(_ sender: Any) {
       tableView.isHidden = !tableView.isHidden
         if tableView.isHidden == false {
@@ -41,27 +40,26 @@ class RhRegisterViewController: RhBaseViewController, UITableViewDataSource, UIT
         } else {
             downArrow.setBackgroundImage(UIImage(named:"down"), for: .normal)
         }
-        
     }
-    
+
     // MARK: UITableViewDataSource
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return values.count;
+        return values.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell!
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")
+                                                                   as UITableViewCell!
         // Set text from the data model
         cell.textLabel?.text = values[indexPath.row]
         cell.textLabel?.font = zoneTextField.font
         return cell
     }
-    
+
     // MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Row selected, so set textField to relevant value, hide tableView
@@ -70,7 +68,7 @@ class RhRegisterViewController: RhBaseViewController, UITableViewDataSource, UIT
         tableView.isHidden = true
         downArrow.setBackgroundImage(UIImage(named:"down"), for: .normal)
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.0
     }

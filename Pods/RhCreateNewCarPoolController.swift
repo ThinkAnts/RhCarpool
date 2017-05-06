@@ -9,9 +9,8 @@
 import Foundation
 import UIKit
 
-
 class RhCreateNewCarPoolController: RhBaseViewController {
-    
+
     @IBOutlet weak var createButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +18,7 @@ class RhCreateNewCarPoolController: RhBaseViewController {
         self.createButton.backgroundColor = UIColor.rhGreen
         self.title = "New CarPool"
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

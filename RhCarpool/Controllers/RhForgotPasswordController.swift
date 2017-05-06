@@ -9,12 +9,10 @@
 import Foundation
 import UIKit
 
-
 class RhForgotPasswordController: RhBaseViewController {
      @IBOutlet weak var resetButton: UIButton!
      @IBOutlet weak var textView: UITextView!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()

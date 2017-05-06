@@ -9,30 +9,31 @@
 import Foundation
 import UIKit
 
-
 class RhHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    @IBOutlet weak var carPoolTableView:UITableView!
+    @IBOutlet weak var carPoolTableView: UITableView!
 
     override func viewDidLoad() {
         self.automaticallyAdjustsScrollViewInsets = false
         carPoolTableView.register(UINib(nibName: "RhCarpoolCell", bundle: nil), forCellReuseIdentifier: "carpool")
         self.navigationController?.navigationItem.hidesBackButton = true
-        let settingsButton = UIBarButtonItem(image: UIImage(named: "settings"), style:  UIBarButtonItemStyle.plain, target: self, action: #selector(RhHomeViewController.settingsAction))
+        let settingsButton = UIBarButtonItem(image: UIImage(named: "settings"),
+                                             style:  UIBarButtonItemStyle.plain,
+                                             target: self, action: #selector(RhHomeViewController.settingsAction))
         self.navigationItem.leftBarButtonItem = settingsButton
-        let addButton = UIBarButtonItem(image: UIImage(named: "add"), style:  UIBarButtonItemStyle.plain, target: self, action: #selector(RhHomeViewController.addAction))
+        let addButton = UIBarButtonItem(image: UIImage(named: "add"),
+                                        style: UIBarButtonItemStyle.plain,
+                                        target: self, action: #selector(RhHomeViewController.addAction))
         self.navigationItem.rightBarButtonItem = addButton
         self.navigationController?.navigationBar.tintColor = UIColor.rhGreen
         self.title = "RH CarPool"
 
     }
-    
+
     // MARK: UITableViewDataSource
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count: Int = 0
         if section == 0 {
@@ -42,30 +43,26 @@ class RhHomeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
        return count
     }
-    
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let carPoolCell = (tableView.dequeueReusableCell(withIdentifier: "carpool") as? RhCarPoolCell)!
-                
         return carPoolCell
     }
 
-    
     // MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Row selected, so set textField to relevant value, hide tableView
         // endEditing can trigger some other action according to requirements
-
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40.0
     }
-    
+
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.00001
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         let label = UILabel(frame: CGRect(x: 10, y: 8, width: tableView.frame.size.width, height: 18))
@@ -80,15 +77,21 @@ class RhHomeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         view.backgroundColor = UIColor.rhGreen // Set your background color
         return view
     }
-    
+
     func addAction() {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "newcarpool") as! RhCreateNewCarPoolController
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "newcarpool")
+                                                            as? RhCreateNewCarPoolController else {
+            return
+        }
         let navController = UINavigationController(rootViewController: vc)
         self.present(navController, animated: true, completion: nil)
     }
 
     func settingsAction() {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "settings") as! RhSettingsViewController
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "settings")
+                                                                 as? RhSettingsViewController else {
+              return
+        }
         let navController = UINavigationController(rootViewController: vc)
         self.present(navController, animated: true, completion: nil)
     }
