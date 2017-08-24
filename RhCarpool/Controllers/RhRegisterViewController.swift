@@ -9,23 +9,21 @@
 import Foundation
 import UIKit
 
-class RhRegisterViewController: RhBaseViewController, UITableViewDataSource, UITableViewDelegate {
+class RhRegisterViewController: RhBaseViewController, UIPickerViewDataSource, UIPickerViewDelegate,
+                                UITextFieldDelegate {
     @IBOutlet weak var registertButton: UIButton!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var zoneTextField: UITextField!
-    @IBOutlet weak var downArrow: UIButton!
+    @IBOutlet weak var zoneTextField: UITextField! { didSet { zoneTextField.delegate = self } }
+    @IBOutlet weak var pickerView: UIPickerView!
 
-    var values = ["East", "West", "North", "South"]
+    var pickerDataSoruce = ["East", "West", "North", "South"]
     let cellReuseIdentifier = "cell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.isHidden = true
         self.title = "Sign Up"
+        self.pickerView.dataSource = self
+        self.pickerView.delegate = self
         self.registertButton.backgroundColor = UIColor.rhGreen
     }
 
@@ -33,44 +31,20 @@ class RhRegisterViewController: RhBaseViewController, UITableViewDataSource, UIT
         super.didReceiveMemoryWarning()
     }
 
-    @IBAction func dropDown(_ sender: Any) {
-      tableView.isHidden = !tableView.isHidden
-        if tableView.isHidden == false {
-            downArrow.setBackgroundImage(UIImage(named:"up"), for: .normal)
-        } else {
-            downArrow.setBackgroundImage(UIImage(named:"down"), for: .normal)
-        }
-    }
-
-    // MARK: UITableViewDataSource
-    func numberOfSections(in tableView: UITableView) -> Int {
+    //Mark: Picker Data Source Methods
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return values.count
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerDataSoruce.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")
-                                                                   as UITableViewCell!
-        // Set text from the data model
-        cell.textLabel?.text = values[indexPath.row]
-        cell.textLabel?.font = zoneTextField.font
-        return cell
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerDataSoruce[row]
     }
 
-    // MARK: UITableViewDelegate
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Row selected, so set textField to relevant value, hide tableView
-        // endEditing can trigger some other action according to requirements
-        zoneTextField.text = values[indexPath.row]
-        tableView.isHidden = true
-        downArrow.setBackgroundImage(UIImage(named:"down"), for: .normal)
+    func textFieldDidBeginEditing(_ textField: UITextField) {    //delegate method
+        self.pickerView.isHidden = false
     }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.0
-    }
-
 }
