@@ -9,19 +9,24 @@
 import Foundation
 import UIKit
 
-class RhWebViewController: UIViewController {
+class RhWebViewController: RhBaseViewController {
 
     @IBOutlet weak var webView: UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "About"
-        navigationController?.navigationBar.barTintColor = UIColor.backGroundColor
-        self.view.backgroundColor = UIColor.backGroundColor
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.rhGreen]
-        self.automaticallyAdjustsScrollViewInsets = false
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        setup(title:"About")
         let url = URL(string: "http://www.runnershigh.in/")
         let requestObj = URLRequest(url: url!)
         webView.loadRequest(requestObj)
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "back").withRenderingMode(.alwaysTemplate), style: UIBarButtonItemStyle.plain,
+                                         target: self, action: #selector(RhWebViewController.goBack))
+        self.navigationItem.leftBarButtonItem = backButton
     }
 
+    @objc func goBack() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }

@@ -11,14 +11,12 @@ import UIKit
 
 class RhForgotPasswordController: RhBaseViewController {
      @IBOutlet weak var resetButton: UIButton!
-     @IBOutlet weak var textView: UITextView!
+     @IBOutlet weak var emailTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
-        self.title = "Forgot Password"
+        setup(title: "Forgot Password")
         self.resetButton.backgroundColor = UIColor.rhGreen
-        textView.backgroundColor = UIColor.backGroundColor
     }
 
 }

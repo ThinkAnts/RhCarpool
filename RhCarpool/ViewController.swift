@@ -7,21 +7,24 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
-class ViewController: UIViewController {
+class ViewController: RhBaseViewController {
 
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var forgotPassword: UIButton!
     @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.view.backgroundColor = UIColor.backGroundColor
         self.signInButton.backgroundColor = UIColor.rhGreen
         //self.signInButton.layer.cornerRadius = 8.0
-        self.forgotPassword.setTitleColor(UIColor.linkBlue, for: .normal)
-        self.registerButton.setTitleColor(UIColor.linkBlue, for: .normal)
+        self.forgotPassword.setTitleColor(UIColor.rhGreen, for: .normal)
+        self.registerButton.setTitleColor(UIColor.rhGreen, for: .normal)
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,7 +67,19 @@ class ViewController: UIViewController {
                                                                 as? RhHomeViewController else {
             return
         }
-        self.navigationController?.pushViewController(vc, animated: true)
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            RhSVProgressHUD.showIndicator(status: "Validating")
+            Auth.auth().signIn(withEmail: email, password: password, completion: {[weak self] (user, error) in
+                if user != nil {
+                    RhSVProgressHUD.hideIndicator()
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                } else {
+                    // Error Block
+                    RhSVProgressHUD.hideIndicator()
+                    print(error?.localizedDescription ?? "Error Occured")
+                }
+            })
+        }
     }
 
 }

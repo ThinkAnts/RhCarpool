@@ -8,23 +8,69 @@
 
 import Foundation
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class RhBaseViewController: UIViewController {
-
-    func setup() {
-        navigationController?.navigationBar.barTintColor = UIColor.backGroundColor
-        self.view.backgroundColor = UIColor.backGroundColor
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.rhGreen]
-        let backButton = UIBarButtonItem(title: "Cancel",
-                                         style: UIBarButtonItemStyle.plain,
+    let regexp = "^(?=.*[a-zA-Z])(?=.*[0-9])"
+    var ref: DatabaseReference?
+    func setup(title: String) {
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:
+                                                                    UIColor.black]
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysOriginal), style: UIBarButtonItemStyle.plain,
                                          target: self, action: #selector(RhBaseViewController.cancelAction))
         self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
         self.automaticallyAdjustsScrollViewInsets = false
-        //self.createButton.layer.cornerRadius = 8.0
+        self.title = title
+        ref = Database.database().reference()
     }
 
-    func cancelAction() {
+    @objc func cancelAction() {
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
 
+    // MARK: - Firebase API Calls
+    func createUser(userData: [String: String], completion: @escaping (_ success: String) -> Void) {
+        RhSVProgressHUD.showIndicator(status: "")
+        let email = userData[RhConstants.emailAddress] ?? ""
+        let password = userData[RhConstants.password] ?? ""
+        Auth.auth().createUser(withEmail: email, password: password, completion: {(user, error) in
+            if user != nil {
+                FireBaseDataBase.sharedInstance.registerUser(childName: "data/users",
+                                                             user: userData,
+                                                             uid: (user?.uid)!, completion: { response in
+                    if response == "Success" {
+                        completion(response)
+                    } else {
+                        completion(response)
+                    }
+                })
+            } else {
+                // Error: check error
+                RhSVProgressHUD.hideIndicator()
+                let errorString = error?.localizedDescription ?? "Error In Saving User to DataBase"
+                completion(errorString)
+            }
+        })
+    }
+
+    // MARK: - UIAlert View
+    func showAlertViewController(message: String) {
+        if message.characters.count == 0 {
+            return
+        }
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+}
+
+extension RhBaseViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

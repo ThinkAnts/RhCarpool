@@ -18,12 +18,13 @@ class RhSettingsViewController: RhBaseViewController, UITableViewDataSource, UIT
     let cellReuseIdentifier = "cell"
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Settings"
         self.settingsTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
-        setup()
         self.logoutButton.backgroundColor = UIColor.rhGreen
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        setup(title:"Settings")
+    }
     // MARK: UITableViewDataSource & Delegate
 
     func numberOfSections(in tableView: UITableView) -> Int {

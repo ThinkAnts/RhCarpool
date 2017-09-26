@@ -9,26 +9,31 @@
 import Foundation
 import UIKit
 
-class RhHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class RhHomeViewController: RhBaseViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var carPoolTableView: UITableView!
 
     override func viewDidLoad() {
-        self.automaticallyAdjustsScrollViewInsets = false
         carPoolTableView.register(UINib(nibName: "RhCarpoolCell", bundle: nil), forCellReuseIdentifier: "carpool")
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        setup(title: "RH CarPool")
+        loadInitialView()
+    }
+
+    func loadInitialView() {
         self.navigationController?.navigationItem.hidesBackButton = true
-        let settingsButton = UIBarButtonItem(image: UIImage(named: "settings"),
+        let settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings").withRenderingMode(.alwaysOriginal),
                                              style:  UIBarButtonItemStyle.plain,
                                              target: self, action: #selector(RhHomeViewController.settingsAction))
         self.navigationItem.leftBarButtonItem = settingsButton
-        let addButton = UIBarButtonItem(image: UIImage(named: "add"),
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+        let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "add").withRenderingMode(.alwaysOriginal),
                                         style: UIBarButtonItemStyle.plain,
                                         target: self, action: #selector(RhHomeViewController.addAction))
         self.navigationItem.rightBarButtonItem = addButton
-        self.navigationController?.navigationBar.tintColor = UIColor.rhGreen
-        self.title = "RH CarPool"
-
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
     }
-
     // MARK: UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -67,9 +72,9 @@ class RhHomeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let view = UIView()
         let label = UILabel(frame: CGRect(x: 10, y: 8, width: tableView.frame.size.width, height: 18))
         if section == 0 {
-            label.text = "RH's CarPool"
+            label.text = "RH's Ride"
         } else {
-            label.text = "Your's CarPool"
+            label.text = "My Ride"
         }
         label.textColor = UIColor.white
         label.font = UIFont(name: "HelveticaNeue-Bold", size: 14)
@@ -78,7 +83,7 @@ class RhHomeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return view
     }
 
-    func addAction() {
+    @objc func addAction() {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "newcarpool")
                                                             as? RhCreateNewCarPoolController else {
             return
@@ -87,7 +92,7 @@ class RhHomeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.present(navController, animated: true, completion: nil)
     }
 
-    func settingsAction() {
+    @objc func settingsAction() {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "settings")
                                                                  as? RhSettingsViewController else {
               return
