@@ -15,7 +15,7 @@ class RhRegisterViewController: RhBaseViewController, UIPickerViewDataSource, UI
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var fullNameTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var mobileTextField: UITextField!
 
     var pickerDataSoruce = ["East", "West", "North", "South"]
@@ -53,10 +53,11 @@ class RhRegisterViewController: RhBaseViewController, UIPickerViewDataSource, UI
             showAlertViewController(message: "All Fields are Mandatory")
             return
         }
-        let userDict: [String: String] = [RhConstants.emailAddress: emailTextField.text!,
-                        RhConstants.password: passwordTextField.text!,
-                        RhConstants.fullName: fullNameTextField.text!,
-                        RhConstants.mobileNumber: mobileTextField.text!, RhConstants.direction: zoneTextField.text!]
+        let userDict: [String: String] = [RhConstants.emailAddress: emailTextField.text ?? "",
+                        RhConstants.password: passwordTextField.text ?? "",
+                        RhConstants.fullName: nameTextField.text ?? "",
+                        RhConstants.mobileNumber: mobileTextField.text ?? "",
+                        RhConstants.direction: zoneTextField.text ?? ""]
         createUser(userData: userDict) {[weak self] response in
             if response == "Success" {
                 self?.backToPreviousScreen()
@@ -69,7 +70,7 @@ class RhRegisterViewController: RhBaseViewController, UIPickerViewDataSource, UI
     //Mark:  - Validations
     func validateAllFields() -> Bool {
         if emailTextField.text != "", passwordTextField.text != "",
-            fullNameTextField.text != "",
+            nameTextField.text != "",
             mobileTextField.text != "", zoneTextField.text != "" {
             return true
         } else {
