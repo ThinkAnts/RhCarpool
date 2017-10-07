@@ -46,6 +46,7 @@ class RhBaseViewController: UIViewController {
                     } else {
                         completion(response)
                     }
+                    RhSVProgressHUD.hideIndicator()
                 })
             } else {
                 // Error: check error
@@ -56,6 +57,20 @@ class RhBaseViewController: UIViewController {
         })
     }
 
+    func resetePassword(email: String, completion: @escaping (_ success: String) -> Void) {
+        RhSVProgressHUD.showIndicator(status: "")
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            RhSVProgressHUD.hideIndicator()
+            if error == nil {
+                RhSVProgressHUD.showSuccessMessage(status: "Email Sucessfully Sent", imageString: "tick")
+                completion("Success")
+            } else {
+                let errorString = error?.localizedDescription ?? "Error In Reseting the password"
+                completion(errorString)
+            }
+        }
+    }
+
     // MARK: - UIAlert View
     func showAlertViewController(message: String) {
         if message.characters.count == 0 {
@@ -64,13 +79,5 @@ class RhBaseViewController: UIViewController {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         present(alert, animated: true, completion: nil)
-    }
-}
-
-extension RhBaseViewController: UITextFieldDelegate {
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
 }

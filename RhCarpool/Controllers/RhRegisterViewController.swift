@@ -20,15 +20,19 @@ class RhRegisterViewController: RhBaseViewController, UIPickerViewDataSource, UI
 
     var pickerDataSoruce = ["East", "West", "North", "South"]
     let cellReuseIdentifier = "cell"
+    var isPickerViewAdded = false
+    var zonePickerView: ZoneView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup(title: "Sign Up")
+        setup(title: "Create Account")
         //self.pickerView.dataSource = self
         //self.pickerView.delegate = self
         self.registertButton.backgroundColor = UIColor.rhGreen
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        zoneTextField.inputView = UIView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,5 +84,57 @@ class RhRegisterViewController: RhBaseViewController, UIPickerViewDataSource, UI
 
     func backToPreviousScreen() {
         cancelAction()
+    }
+
+    func loadPickerView() {
+        if !isPickerViewAdded {
+            zonePickerView = ZoneView.loadFromNib()
+            zonePickerView?.center = CGPoint(x: view.bounds.midX,
+                                      y: view.bounds.midY)
+            zonePickerView?.layer.shadowColor = UIColor.darkGray.cgColor
+            zonePickerView?.layer.shadowRadius = 5.0
+            zonePickerView?.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
+            zonePickerView?.layer.shadowOpacity = 1.0
+            zonePickerView?.clipsToBounds = false
+            zonePickerView?.tag = 0001
+            zonePickerView?.layer.masksToBounds = false
+            self.view.addSubview(zonePickerView!)
+            self.view.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+            NotificationCenter.default.addObserver(self, selector: #selector(RhRegisterViewController.doneAction),
+                                                   name: NSNotification.Name(rawValue: "zoneView"), object: nil)
+        }
+    }
+
+    @objc func doneAction(notification: NSNotification) {
+        let selectedZone = notification.object as? String
+        if selectedZone != "" {
+            zoneTextField.text = selectedZone ?? ""
+        }
+        closeDOBView()
+        NotificationCenter.default.removeObserver(self, name:NSNotification.Name(rawValue: "zoneView"), object: nil)
+    }
+
+    func closeDOBView() {
+        isPickerViewAdded = false
+        self.view.backgroundColor = UIColor.white
+        for view in self.view.subviews where view.tag == 0001 {
+            view.removeFromSuperview()
+        }
+    }
+}
+
+extension RhRegisterViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.tag == 111 {
+            textField.resignFirstResponder()
+            loadPickerView()
+            isPickerViewAdded = true
+        }
     }
 }

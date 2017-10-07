@@ -21,6 +21,9 @@
 		183499331EB72E9700E69F86 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183499321EB72E9700E69F86 /* UIImage.swift */; };
 		1868C4101F4F2ED700107B54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1868C40F1F4F2ED700107B54 /* GoogleService-Info.plist */; };
 		188454971F6EBBEC0076DA00 /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188454961F6EBBEC0076DA00 /* UserDetails.swift */; };
+		18A60ACF1F7C0A890038EC20 /* ZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A60ACE1F7C0A890038EC20 /* ZoneView.swift */; };
+		18A60AD11F7C0AFF0038EC20 /* ZoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A60AD01F7C0AFF0038EC20 /* ZoneView.xib */; };
+		18A60AD31F7D56D30038EC20 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A60AD21F7D56D30038EC20 /* UserDefaults.swift */; };
 		18D513601EA3BFB800699821 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D5135F1EA3BFB800699821 /* AppDelegate.swift */; };
 		18D513621EA3BFB800699821 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D513611EA3BFB800699821 /* ViewController.swift */; };
 		18D513651EA3BFB800699821 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D513631EA3BFB800699821 /* Main.storyboard */; };
@@ -70,6 +73,9 @@
 		183499321EB72E9700E69F86 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImage.swift; path = Extensions/UIImage.swift; sourceTree = "<group>"; };
 		1868C40F1F4F2ED700107B54 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		188454961F6EBBEC0076DA00 /* UserDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDetails.swift; path = Model/UserDetails.swift; sourceTree = "<group>"; };
+		18A60ACE1F7C0A890038EC20 /* ZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZoneView.swift; path = View/ZoneView.swift; sourceTree = "<group>"; };
+		18A60AD01F7C0AFF0038EC20 /* ZoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ZoneView.xib; path = View/ZoneView.xib; sourceTree = "<group>"; };
+		18A60AD21F7D56D30038EC20 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaults.swift; path = Utilities/UserDefaults.swift; sourceTree = "<group>"; };
 		18B00C5853F5B951E40F762C /* Pods_RhCarpool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RhCarpool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D5135C1EA3BFB800699821 /* RhCarpool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RhCarpool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D5135F1EA3BFB800699821 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +132,8 @@
 			children = (
 				1801744E1F76DF5500CC7371 /* RhChooseImagePopUp.swift */,
 				180174501F76DF7400CC7371 /* RhChooseImagePopUp.xib */,
+				18A60ACE1F7C0A890038EC20 /* ZoneView.swift */,
+				18A60AD01F7C0AFF0038EC20 /* ZoneView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -239,6 +247,7 @@
 			children = (
 				18F2DE1F1F780E1000626025 /* RhSVProgressHUD.swift */,
 				18F2DE1C1F77F95D00626025 /* RhConstants.swift */,
+				18A60AD21F7D56D30038EC20 /* UserDefaults.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -375,6 +384,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A60AD11F7C0AFF0038EC20 /* ZoneView.xib in Resources */,
 				183499251EB5DE8000E69F86 /* RhCarpoolCell.xib in Resources */,
 				18D5136D1EA3BFB800699821 /* LaunchScreen.storyboard in Resources */,
 				1868C4101F4F2ED700107B54 /* GoogleService-Info.plist in Resources */,
@@ -476,9 +486,11 @@
 				183499291EB6637A00E69F86 /* RhSettingsViewController.swift in Sources */,
 				1801744F1F76DF5500CC7371 /* RhChooseImagePopUp.swift in Sources */,
 				183499331EB72E9700E69F86 /* UIImage.swift in Sources */,
+				18A60ACF1F7C0A890038EC20 /* ZoneView.swift in Sources */,
 				1834991E1EB4C25C00E69F86 /* RhRegisterViewController.swift in Sources */,
 				18DC87CE1EB38B3600021250 /* NavigationController.swift in Sources */,
 				18D513931EA3C3F000699821 /* UIColor+CustomColor.swift in Sources */,
+				18A60AD31F7D56D30038EC20 /* UserDefaults.swift in Sources */,
 				183499201EB5CFD900E69F86 /* RhHomeViewControllrt.swift in Sources */,
 				18F2DE1B1F77D3A800626025 /* FireBaseDataBase.swift in Sources */,
 				1834992D1EB6648400E69F86 /* RhBaseViewController.swift in Sources */,

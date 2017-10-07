@@ -36,6 +36,9 @@ class ViewController: RhBaseViewController {
         super.viewWillAppear(animated)
         // Hide the navigation bar on the this view controller
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        if UserDefaults.getAuthToken() != nil {
+            authTokenAuthentication()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,15 +74,35 @@ class ViewController: RhBaseViewController {
             RhSVProgressHUD.showIndicator(status: "Validating")
             Auth.auth().signIn(withEmail: email, password: password, completion: {[weak self] (user, error) in
                 if user != nil {
+                    let authToken = user?.refreshToken ?? ""
+                    UserDefaults.storeAuthToken(authToken: authToken)
                     RhSVProgressHUD.hideIndicator()
                     self?.navigationController?.pushViewController(vc, animated: true)
                 } else {
                     // Error Block
                     RhSVProgressHUD.hideIndicator()
+                    self?.showAlertViewController(message: "Invalid Credentials")
                     print(error?.localizedDescription ?? "Error Occured")
                 }
             })
         }
     }
 
+    func authTokenAuthentication() {
+        let token = UserDefaults.getAuthToken() ?? ""
+        Auth.auth().signIn(withCustomToken: token) { (user, error) in
+            if user != nil {
+                print("\(String(describing: user))")
+            } else if error != nil {
+                print("\(String(describing: error?.localizedDescription))")
+            }
+        }
+    }
+}
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

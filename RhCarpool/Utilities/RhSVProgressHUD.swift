@@ -20,4 +20,9 @@ open class RhSVProgressHUD: NSObject {
         UIApplication.shared.endIgnoringInteractionEvents()
         SVProgressHUD.dismiss()
     }
+    static func showSuccessMessage(status: String, imageString: String) {
+        let image = UIImage(named: imageString)
+        SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+        SVProgressHUD.show(image!, status: status)
+    }
 }

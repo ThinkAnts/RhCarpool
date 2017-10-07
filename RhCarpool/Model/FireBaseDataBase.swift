@@ -20,11 +20,6 @@ class FireBaseDataBase {
     func registerUser(childName: String, user: [String: String], uid: String,
                       completion: @escaping (_ success: String) -> Void) {
         let userRef = ref.child("data/users").child(uid)
-//        let userDict = [RhConstants.emailAddress: user[RhConstants.emailAddress],
-//                        RhConstants.fullName: user[RhConstants.fullName],
-//                        RhConstants.password: user[RhConstants.password],
-//                        RhConstants.mobileNumber: user[RhConstants.mobileNumber],
-//                        RhConstants.direction: user[RhConstants.direction]]
         userRef.setValue(user) { (error, _) in
             if error == nil {
                 let userDetails = UserDetails()
