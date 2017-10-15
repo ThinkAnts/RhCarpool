@@ -8,10 +8,11 @@
 
 import Foundation
 
-class UserDetails {
-    var fullName = ""
-    var email = ""
-    var password = ""
-    var mobileNumber = ""
-    var zone = ""
+class UserDetails: FIRDataObject {
+    var fullName: String = ""
+    var email: String = ""
+    var password: String = ""
+    var mobileNumber: String = ""
+    var uidString: String = ""
+    var direction: String = ""
 }

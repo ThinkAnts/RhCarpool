@@ -22,4 +22,17 @@ extension UserDefaults {
         }
         return ""
     }
+
+    class func storeUserData(user: UserDetails) {
+        let defaults = UserDefaults.standard
+        defaults.set(user, forKey: "userData")
+    }
+
+    class func getUserData () -> [UserDetails]? {
+        let defaults = UserDefaults.standard
+        if let user = defaults.object(forKey: "userData") as? [UserDetails] {
+            return user
+        }
+        return nil
+    }
 }

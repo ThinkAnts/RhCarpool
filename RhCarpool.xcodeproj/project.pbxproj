@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1801744F1F76DF5500CC7371 /* RhChooseImagePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801744E1F76DF5500CC7371 /* RhChooseImagePopUp.swift */; };
 		180174511F76DF7400CC7371 /* RhChooseImagePopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180174501F76DF7400CC7371 /* RhChooseImagePopUp.xib */; };
+		180D94991F89187700324A39 /* FIRDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D94981F89187700324A39 /* FIRDataObject.swift */; };
 		1834991E1EB4C25C00E69F86 /* RhRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834991D1EB4C25C00E69F86 /* RhRegisterViewController.swift */; };
 		183499201EB5CFD900E69F86 /* RhHomeViewControllrt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834991F1EB5CFD900E69F86 /* RhHomeViewControllrt.swift */; };
 		183499231EB5DE5000E69F86 /* RhCarPoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183499221EB5DE5000E69F86 /* RhCarPoolCell.swift */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		1801744E1F76DF5500CC7371 /* RhChooseImagePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RhChooseImagePopUp.swift; path = View/RhChooseImagePopUp.swift; sourceTree = "<group>"; };
 		180174501F76DF7400CC7371 /* RhChooseImagePopUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RhChooseImagePopUp.xib; path = View/RhChooseImagePopUp.xib; sourceTree = "<group>"; };
+		180D94981F89187700324A39 /* FIRDataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FIRDataObject.swift; path = Model/FIRDataObject.swift; sourceTree = "<group>"; };
 		1834991D1EB4C25C00E69F86 /* RhRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RhRegisterViewController.swift; path = Controllers/RhRegisterViewController.swift; sourceTree = "<group>"; };
 		1834991F1EB5CFD900E69F86 /* RhHomeViewControllrt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RhHomeViewControllrt.swift; path = Controllers/RhHomeViewControllrt.swift; sourceTree = "<group>"; };
 		183499221EB5DE5000E69F86 /* RhCarPoolCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RhCarPoolCell.swift; path = TableViewCell/RhCarPoolCell.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			children = (
 				188454961F6EBBEC0076DA00 /* UserDetails.swift */,
 				18F2DE1A1F77D3A800626025 /* FireBaseDataBase.swift */,
+				180D94981F89187700324A39 /* FIRDataObject.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				1834992D1EB6648400E69F86 /* RhBaseViewController.swift in Sources */,
 				18D513681EA3BFB800699821 /* RhCarpool.xcdatamodeld in Sources */,
 				183499311EB729C400E69F86 /* RhProfileViewController.swift in Sources */,
+				180D94991F89187700324A39 /* FIRDataObject.swift in Sources */,
 				18F2DE1D1F77F95D00626025 /* RhConstants.swift in Sources */,
 				183499271EB63DEB00E69F86 /* RhCreateNewCarPoolController.swift in Sources */,
 			);
@@ -671,7 +675,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SUPPRESS_WARNINGS = NO;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 4.0;
 			};
@@ -690,7 +694,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SUPPRESS_WARNINGS = NO;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 4.0;
 			};

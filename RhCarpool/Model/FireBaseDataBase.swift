@@ -9,12 +9,13 @@
 import Foundation
 import Firebase
 
-class FireBaseDataBase {
+class FireBaseDataBase: FIRDatabaseReferenceable {
     static let sharedInstance = FireBaseDataBase()
-    var ref: DatabaseReference!
+    var userData: [UserDetails] = []
+    //var ref: DatabaseReference!
     //This prevents others from using the default '()' initializer for this class.
     private init() {
-        ref = Database.database().reference()
+        //ref = Database.database().reference()
     }
 
     func registerUser(childName: String, user: [String: String], uid: String,
@@ -22,12 +23,12 @@ class FireBaseDataBase {
         let userRef = ref.child("data/users").child(uid)
         userRef.setValue(user) { (error, _) in
             if error == nil {
-                let userDetails = UserDetails()
-                userDetails.email = user[RhConstants.emailAddress]!
-                userDetails.fullName = user[RhConstants.fullName]!
-                userDetails.mobileNumber = user[RhConstants.mobileNumber]!
-                userDetails.password = user[RhConstants.password]!
-                userDetails.zone = user[RhConstants.direction]!
+//                let userDetails = UserDetails()
+//                userDetails?.email = user[RhConstants.emailAddress]!
+//                userDetails?.fullName = user[RhConstants.fullName]!
+//                userDetails?.mobileNumber = user[RhConstants.mobileNumber]!
+//                userDetails?.password = user[RhConstants.password]!
+//                userDetails?.zone = user[RhConstants.direction]!
                 completion("Success")
             } else {
                 let errorString = error?.localizedDescription ?? "Error In Saving User to DataBase"
@@ -35,4 +36,12 @@ class FireBaseDataBase {
             }
         }
     }
+
+    func getUserData(uid: String) {
+        let userRef = ref.child("data/users").child(uid)
+        userRef.observeSingleEvent(of: .value) {[weak self] (snapShot) in
+            self?.userData.append(UserDetails(snapshot: snapShot))
+        }
+    }
+
 }

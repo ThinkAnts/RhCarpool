@@ -36,9 +36,9 @@ class ViewController: RhBaseViewController {
         super.viewWillAppear(animated)
         // Hide the navigation bar on the this view controller
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        if UserDefaults.getAuthToken() != nil {
-            authTokenAuthentication()
-        }
+//        if UserDefaults.getAuthToken() != nil {
+//            authTokenAuthentication()
+//        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -77,6 +77,8 @@ class ViewController: RhBaseViewController {
                     let authToken = user?.refreshToken ?? ""
                     UserDefaults.storeAuthToken(authToken: authToken)
                     RhSVProgressHUD.hideIndicator()
+                    let uidString = user?.uid ?? ""
+                    self?.fetchUserDetails(uid: uidString)
                     self?.navigationController?.pushViewController(vc, animated: true)
                 } else {
                     // Error Block
@@ -97,6 +99,10 @@ class ViewController: RhBaseViewController {
                 print("\(String(describing: error?.localizedDescription))")
             }
         }
+    }
+
+    func fetchUserDetails(uid: String) {
+        FireBaseDataBase.sharedInstance.getUserData(uid: uid)
     }
 }
 

@@ -83,7 +83,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h5J-Nq-oaj">
-                                        <rect key="frame" x="187" y="113" width="94" height="20"/>
+                                        <rect key="frame" x="189" y="113" width="92" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="ngk-PS-bYA"/>
                                         </constraints>
@@ -345,7 +345,7 @@
                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="continue"/>
                                                 <connections>
-                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="XIZ-R9-gSN"/>
+                                                    <outlet property="delegate" destination="o2v-VO-Dc0" id="zB4-6j-5wZ"/>
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2NT-Yg-bsb" userLabel="Seperator View">
@@ -364,7 +364,7 @@
                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="continue"/>
                                                 <connections>
-                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="DRB-ZU-hoj"/>
+                                                    <outlet property="delegate" destination="o2v-VO-Dc0" id="89a-7x-cgG"/>
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D3q-QR-aAo" userLabel="Seperator View">
@@ -383,7 +383,7 @@
                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="continue" secureTextEntry="YES"/>
                                                 <connections>
-                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="UUg-ec-bOK"/>
+                                                    <outlet property="delegate" destination="o2v-VO-Dc0" id="zqt-Sy-mfE"/>
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sUi-GA-8xv" userLabel="Seperator View">
@@ -402,7 +402,7 @@
                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="continue"/>
                                                 <connections>
-                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="xOi-hO-VSy"/>
+                                                    <outlet property="delegate" destination="o2v-VO-Dc0" id="pC6-9u-esJ"/>
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kt5-PE-ham" userLabel="Seperator View">
@@ -514,7 +514,13 @@
                     </view>
                     <size key="freeformSize" width="320" height="670"/>
                     <connections>
+                        <outlet property="commentsTextView" destination="oiU-gc-qwU" id="76b-E3-DS7"/>
                         <outlet property="createButton" destination="rvo-Ow-QvA" id="lmK-9U-u5m"/>
+                        <outlet property="dateTimeTextField" destination="dBh-CO-x6e" id="uW9-7m-11s"/>
+                        <outlet property="routeTextView" destination="2Gj-hY-0LX" id="rfk-xl-C3K"/>
+                        <outlet property="runningLocationTextField" destination="Dwl-qo-PIQ" id="BxB-7m-JMd"/>
+                        <outlet property="seatsTextField" destination="uiw-cd-bgQ" id="A9E-L3-9cc"/>
+                        <outlet property="zoneTextField" destination="jIe-EJ-StF" id="PyS-Ra-BvJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TY7-LR-Et4" userLabel="First Responder" sceneMemberID="firstResponder"/>
