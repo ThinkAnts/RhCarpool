@@ -7,31 +7,21 @@
 //
 
 import Foundation
+import ObjectMapper
 
 extension UserDefaults {
-
-    class func storeAuthToken (authToken: String) {
-        let defaults = UserDefaults.standard
-        defaults.set(authToken, forKey: "authToken")
-    }
-
-    class func getAuthToken () -> String? {
-        let defaults = UserDefaults.standard
-        if let authTokenString = defaults.string(forKey: "authToken") {
-            return authTokenString
-        }
-        return ""
-    }
-
     class func storeUserData(user: UserDetails) {
+        let JSONString = Mapper().toJSONString(user, prettyPrint: true)
         let defaults = UserDefaults.standard
-        defaults.set(user, forKey: "userData")
+        defaults.set(JSONString, forKey: "userData")
     }
 
-    class func getUserData () -> [UserDetails]? {
+    class func getUserData () -> UserDetails? {
         let defaults = UserDefaults.standard
-        if let user = defaults.object(forKey: "userData") as? [UserDetails] {
-            return user
+        if let userInfo = defaults.string(forKey: "userData") {
+            if let userDetails = UserDetails(JSONString: userInfo) {
+                return userDetails
+            }
         }
         return nil
     }

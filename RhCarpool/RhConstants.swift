@@ -9,9 +9,10 @@
 import Foundation
 
 class RhConstants: NSObject {
-    static let emailAddress = "Email"
-    static let fullName = "FullName"
-    static let password = "Password"
-    static let mobileNumber = "MobileNumber"
-    static let direction = "Direction"
+    static let emailAddress = "email"
+    static let fullName = "fullName"
+    static let password = "password"
+    static let mobileNumber = "mobileNumber"
+    static let direction = "direction"
+    static let authToken = "authToken"
 }

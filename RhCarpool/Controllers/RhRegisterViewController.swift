@@ -61,7 +61,8 @@ class RhRegisterViewController: RhBaseViewController, UIPickerViewDataSource, UI
                         RhConstants.password: passwordTextField.text ?? "",
                         RhConstants.fullName: nameTextField.text ?? "",
                         RhConstants.mobileNumber: mobileTextField.text ?? "",
-                        RhConstants.direction: zoneTextField.text ?? ""]
+                        RhConstants.direction: zoneTextField.text ?? "",
+                        RhConstants.authToken: randomString()]
         createUser(userData: userDict) {[weak self] response in
             if response == "Success" {
                 self?.backToPreviousScreen()

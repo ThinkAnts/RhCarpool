@@ -31,6 +31,22 @@ class RhBaseViewController: UIViewController {
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
 
+    // MARK: - SignOut
+    func signOut() -> String {
+        var returnString = ""
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+            returnString = signOutError.localizedDescription
+            return returnString
+        }
+        return returnString
+    }
+
+    func clearUserDefaults() {
+        let appDomain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: appDomain)
+    }
     // MARK: - Firebase API Calls
     func createUser(userData: [String: String], completion: @escaping (_ success: String) -> Void) {
         RhSVProgressHUD.showIndicator(status: "")
@@ -79,5 +95,18 @@ class RhBaseViewController: UIViewController {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+
+    // MARK: - Generate Random String
+    func randomString() -> String {
+        let letters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let len = UInt32(letters.length)
+        var randomString = ""
+        for _ in 0 ..< 20 {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        return randomString
     }
 }

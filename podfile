@@ -7,4 +7,5 @@ pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'OpenSans'
 pod 'SVProgressHUD'
+pod 'ObjectMapper', '~> 2.2'
 end

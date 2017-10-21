@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class RhSettingsViewController: RhBaseViewController, UITableViewDataSource, UITableViewDelegate {
+class RhSettingsViewController: RhBaseViewController {
 
     @IBOutlet weak var settingsTableView: UITableView!
     @IBOutlet weak var logoutButton: UIButton!
@@ -25,7 +25,20 @@ class RhSettingsViewController: RhBaseViewController, UITableViewDataSource, UIT
     override func viewWillAppear(_ animated: Bool) {
         setup(title:"Settings")
     }
-    // MARK: UITableViewDataSource & Delegate
+
+       @IBAction func logout(_ sender: Any) {
+        let error = signOut()
+        if error == "" {
+            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "login")
+            UIApplication.shared.keyWindow?.rootViewController = loginViewController
+            clearUserDefaults()
+        } else {
+            showAlertViewController(message: "Error In Singing Out of Application")
+       }
+     }
+}
+
+extension RhSettingsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -50,20 +63,19 @@ class RhSettingsViewController: RhBaseViewController, UITableViewDataSource, UIT
         return cell
     }
 
-    // MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Row selected, so set textField to relevant value, hide tableView
         // endEditing can trigger some other action according to requirements
         if indexPath.row == 0 {
             guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "webview")
-                                            as? RhWebViewController else {
-                return
+                as? RhWebViewController else {
+                    return
             }
             self.navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.row == 1 {
             guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "profile")
-                                            as? RhProfileViewController else {
-                return
+                as? RhProfileViewController else {
+                    return
             }
             self.navigationController?.pushViewController(vc, animated: true)
         }
