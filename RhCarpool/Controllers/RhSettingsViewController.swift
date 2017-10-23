@@ -29,8 +29,6 @@ class RhSettingsViewController: RhBaseViewController {
        @IBAction func logout(_ sender: Any) {
         let error = signOut()
         if error == "" {
-            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "login")
-            UIApplication.shared.keyWindow?.rootViewController = loginViewController
             clearUserDefaults()
         } else {
             showAlertViewController(message: "Error In Singing Out of Application")

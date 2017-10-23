@@ -15,4 +15,5 @@ class RhConstants: NSObject {
     static let mobileNumber = "mobileNumber"
     static let direction = "direction"
     static let authToken = "authToken"
+    static let photoUrl = "photoUrl"
 }

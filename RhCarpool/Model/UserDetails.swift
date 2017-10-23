@@ -17,6 +17,7 @@ struct UserDetails: Mappable {
     var uidString: String = ""
     var direction: String = ""
     var authToken: String = ""
+    var photoUrl: String = ""
 
     init?(map: Map) {
     }
@@ -29,5 +30,6 @@ struct UserDetails: Mappable {
         uidString     <- map["uidString"]
         direction     <- map["direction"]
         authToken <- map["authToken"]
+        photoUrl  <- map["photoUrl"]
     }
 }

@@ -44,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let user = UserDefaults.getUserData()
         if user?.uidString == uid {
             if user?.authToken != .none {
+                FireBaseDataBase.sharedInstance.getUserData(uid: uid)
                 return true
             }
         }

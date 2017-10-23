@@ -27,7 +27,7 @@ class ZoneView: UIView {
         // Input data into the Array:
         pickerData = ["East", "West", "North", "South"]
         let button: UIButton = UIButton(frame: CGRect(x: 150, y: 100, width: 45, height: 45))
-        button.setImage(#imageLiteral(resourceName: "done"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "tick"), for: .normal)
         button.addTarget(self, action: #selector(selectedDateAction), for: .touchUpInside)
         self.addSubview(button)
     }

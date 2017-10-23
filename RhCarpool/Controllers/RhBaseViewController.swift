@@ -109,4 +109,8 @@ class RhBaseViewController: UIViewController {
         }
         return randomString
     }
+
+    @objc func handleSingleTap() {
+        self.view.endEditing(true)
+    }
 }

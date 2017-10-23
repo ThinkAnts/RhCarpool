@@ -25,6 +25,9 @@ class ViewController: RhBaseViewController {
         //self.signInButton.layer.cornerRadius = 8.0
         self.forgotPassword.setTitleColor(UIColor.rhGreen, for: .normal)
         self.registerButton.setTitleColor(UIColor.rhGreen, for: .normal)
+        let tapRecognizer = UITapGestureRecognizer(target: self,
+                                                   action: #selector(RhBaseViewController.handleSingleTap))
+        view.addGestureRecognizer(tapRecognizer)
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,6 +66,9 @@ class ViewController: RhBaseViewController {
     }
 
     @IBAction func signInAction(_ sender: Any) {
+        guard validateAllFields() else {
+            return
+        }
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "home")
                                                                 as? RhHomeViewController else {
             return
@@ -73,7 +79,6 @@ class ViewController: RhBaseViewController {
                 if user != nil {
                     FireBaseDataBase.sharedInstance.getUserData(uid: (user?.uid)!)
                     RhSVProgressHUD.hideIndicator()
-
                     self?.navigationController?.pushViewController(vc, animated: true)
                 } else {
                     // Error Block
@@ -82,6 +87,15 @@ class ViewController: RhBaseViewController {
                     print(error?.localizedDescription ?? "Error Occured")
                 }
             })
+        }
+    }
+
+    //Mark:  - Validations
+    func validateAllFields() -> Bool {
+        if emailTextField.text != "", passwordTextField.text != "" {
+            return true
+        } else {
+            return false
         }
     }
 }

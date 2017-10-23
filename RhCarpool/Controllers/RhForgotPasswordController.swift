@@ -18,6 +18,9 @@ class RhForgotPasswordController: RhBaseViewController {
         super.viewDidLoad()
         setup(title: "Forgot Password")
         self.resetButton.backgroundColor = UIColor.rhGreen
+        let tapRecognizer = UITapGestureRecognizer(target: self,
+                                                   action: #selector(RhBaseViewController.handleSingleTap))
+        view.addGestureRecognizer(tapRecognizer)
     }
 
     override func viewWillAppear(_ animated: Bool) {

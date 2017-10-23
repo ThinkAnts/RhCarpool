@@ -12,7 +12,6 @@ import UIKit
 class RhChooseImagePopUp: UIView {
     @IBOutlet weak var takePic: UIButton!
     @IBOutlet weak var chooseFromGallery: UIButton!
-    let profileVC = RhProfileViewController()
 
     // MARK: - mark Singleton Methods
     class func loadFromNib() -> (RhChooseImagePopUp?) {
@@ -45,17 +44,13 @@ class RhChooseImagePopUp: UIView {
         }, completion: nil)
     }
 
-    func closeView() {
-        self.removeFromSuperview()
-    }
-
     @IBAction func cameraAction() {
-        profileVC.openCamera()
-        self.removeFromSuperview()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "choosePhoto"),
+                                        object:"openCamera")
     }
 
     @IBAction func photoGalleryAction() {
-        profileVC.openGallary()
-        self.removeFromSuperview()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "choosePhoto"),
+                                        object:"openGallery")
     }
 }

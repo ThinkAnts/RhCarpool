@@ -46,9 +46,28 @@ class FireBaseDataBase: NSObject {
         }
     }
 
+    func updateUserData(user: [String: String], uidValue: String) {
+        let userRef = ref.child("data/users").child(uidValue)
+        userRef.updateChildValues(user, withCompletionBlock: {[weak self] (error, _) in
+            if error != nil {
+                print(error.debugDescription)
+            } else {
+                DispatchQueue.global(qos: .background).async {
+                    self?.getUserData(uid: uidValue)
+                }
+            }
+        })
+    }
+
     func addNewNode(childName: String, uid: String, nodeName: String, newValue: String) {
-        ref.child(childName).child(uid).updateChildValues([nodeName: newValue]) { (error, _) in
-            print(error.debugDescription)
+        ref.child(childName).child(uid).updateChildValues([nodeName: newValue]) { [weak self] (error, _) in
+            if error != nil {
+                print(error.debugDescription)
+            } else {
+                DispatchQueue.global(qos: .background).async {
+                    self?.getUserData(uid: uid)
+                }
+            }
         }
     }
 }

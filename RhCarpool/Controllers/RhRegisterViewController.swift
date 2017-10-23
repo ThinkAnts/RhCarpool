@@ -29,6 +29,9 @@ class RhRegisterViewController: RhBaseViewController, UIPickerViewDataSource, UI
         //self.pickerView.dataSource = self
         //self.pickerView.delegate = self
         self.registertButton.backgroundColor = UIColor.rhGreen
+        let tapRecognizer = UITapGestureRecognizer(target: self,
+                                                   action: #selector(RhBaseViewController.handleSingleTap))
+        view.addGestureRecognizer(tapRecognizer)
     }
 
     override func viewWillAppear(_ animated: Bool) {
