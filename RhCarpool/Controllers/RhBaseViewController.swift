@@ -87,6 +87,20 @@ class RhBaseViewController: UIViewController {
         }
     }
 
+    func createNewCarPool(carPoolData: [String: String], carPoolId: String,
+                          completion: @escaping (_ success: String) -> Void) {
+        RhSVProgressHUD.showIndicator(status: "")
+        FireBaseDataBase.sharedInstance.createNewCarPool(carPool: carPoolData, carPoolId: carPoolId) { response in
+            if response == "Success" {
+                completion(response)
+                RhSVProgressHUD.showSuccessMessage(status: "CarPool Sucessfully Created", imageString: "tick")
+            } else {
+                completion(response)
+            }
+            RhSVProgressHUD.hideIndicator()
+        }
+    }
+
     // MARK: - UIAlert View
     func showAlertViewController(message: String) {
         if message.characters.count == 0 {

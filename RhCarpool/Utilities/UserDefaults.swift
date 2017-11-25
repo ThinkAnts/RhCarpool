@@ -25,4 +25,17 @@ extension UserDefaults {
         }
         return nil
     }
+
+    class func storeUid (uid: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(uid, forKey: "uid")
+    }
+
+    class func getUid () -> String? {
+        let defaults = UserDefaults.standard
+        if let uidString = defaults.string(forKey: "uid") {
+            return uidString
+        }
+        return ""
+    }
 }

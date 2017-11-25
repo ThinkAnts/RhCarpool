@@ -9,50 +9,26 @@
 import Foundation
 import UIKit
 
-class RhRegisterViewController: RhBaseViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class RhRegisterViewController: RhBaseViewController {
     @IBOutlet weak var registertButton: UIButton!
-    @IBOutlet weak var zoneTextField: UITextField! { didSet { zoneTextField.delegate = self } }
-    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var zoneTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var mobileTextField: UITextField!
-
-    var pickerDataSoruce = ["East", "West", "North", "South"]
-    let cellReuseIdentifier = "cell"
-    var isPickerViewAdded = false
-    var zonePickerView: ZoneView?
+    @IBOutlet weak var runningProgramField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setup(title: "Create Account")
-        //self.pickerView.dataSource = self
-        //self.pickerView.delegate = self
         self.registertButton.backgroundColor = UIColor.rhGreen
         let tapRecognizer = UITapGestureRecognizer(target: self,
                                                    action: #selector(RhBaseViewController.handleSingleTap))
         view.addGestureRecognizer(tapRecognizer)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        zoneTextField.inputView = UIView()
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-
-    //Mark: Picker Data Source Methods
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerDataSoruce.count
-    }
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerDataSoruce[row]
     }
 
     @IBAction func registerNewUser(_ sender: UIButton) {
@@ -65,6 +41,7 @@ class RhRegisterViewController: RhBaseViewController, UIPickerViewDataSource, UI
                         RhConstants.fullName: nameTextField.text ?? "",
                         RhConstants.mobileNumber: mobileTextField.text ?? "",
                         RhConstants.direction: zoneTextField.text ?? "",
+                        RhConstants.runningProgram: runningProgramField.text ?? "",
                         RhConstants.authToken: randomString()]
         createUser(userData: userDict) {[weak self] response in
             if response == "Success" {
@@ -89,42 +66,6 @@ class RhRegisterViewController: RhBaseViewController, UIPickerViewDataSource, UI
     func backToPreviousScreen() {
         cancelAction()
     }
-
-    func loadPickerView() {
-        if !isPickerViewAdded {
-            zonePickerView = ZoneView.loadFromNib()
-            zonePickerView?.center = CGPoint(x: view.bounds.midX,
-                                      y: view.bounds.midY)
-            zonePickerView?.layer.shadowColor = UIColor.darkGray.cgColor
-            zonePickerView?.layer.shadowRadius = 5.0
-            zonePickerView?.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
-            zonePickerView?.layer.shadowOpacity = 1.0
-            zonePickerView?.clipsToBounds = false
-            zonePickerView?.tag = 0001
-            zonePickerView?.layer.masksToBounds = false
-            self.view.addSubview(zonePickerView!)
-            self.view.backgroundColor = UIColor.white.withAlphaComponent(0.8)
-            NotificationCenter.default.addObserver(self, selector: #selector(RhRegisterViewController.doneAction),
-                                                   name: NSNotification.Name(rawValue: "zoneView"), object: nil)
-        }
-    }
-
-    @objc func doneAction(notification: NSNotification) {
-        let selectedZone = notification.object as? String
-        if selectedZone != "" {
-            zoneTextField.text = selectedZone ?? ""
-        }
-        closeDOBView()
-        NotificationCenter.default.removeObserver(self, name:NSNotification.Name(rawValue: "zoneView"), object: nil)
-    }
-
-    func closeDOBView() {
-        isPickerViewAdded = false
-        self.view.backgroundColor = UIColor.white
-        for view in self.view.subviews where view.tag == 0001 {
-            view.removeFromSuperview()
-        }
-    }
 }
 
 extension RhRegisterViewController: UITextFieldDelegate {
@@ -134,11 +75,15 @@ extension RhRegisterViewController: UITextFieldDelegate {
         return true
     }
 
-    public func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.tag == 111 {
-            textField.resignFirstResponder()
-            loadPickerView()
-            isPickerViewAdded = true
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.tag == 111 || textField.tag == 9 {
+            self.view.frame.origin.y -= 216
+        }
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if self.view.frame.origin.y < 0 {
+            self.view.frame.origin.y = 0
         }
     }
 }

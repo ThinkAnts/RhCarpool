@@ -11,14 +11,19 @@ import UIKit
 
 class RhHomeViewController: RhBaseViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var carPoolTableView: UITableView!
-
     override func viewDidLoad() {
         carPoolTableView.register(UINib(nibName: "RhCarpoolCell", bundle: nil), forCellReuseIdentifier: "carpool")
+        let user = UserDefaults.getUserData()
+        let uidString = UserDefaults.getUid()!
+        if uidString == "" {
+            UserDefaults.storeUid(uid: user?.uidString ?? "")
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         setup(title: "RH CarPool")
         loadInitialView()
+        FireBaseDataBase.sharedInstance.getModelFromFirebase(uid: UserDefaults.getUserData()?.uidString ?? "")
     }
 
     func loadInitialView() {

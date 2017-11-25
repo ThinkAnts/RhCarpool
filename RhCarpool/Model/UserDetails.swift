@@ -18,6 +18,7 @@ struct UserDetails: Mappable {
     var direction: String = ""
     var authToken: String = ""
     var photoUrl: String = ""
+    var runningProgram: String = ""
 
     init?(map: Map) {
     }
@@ -31,5 +32,6 @@ struct UserDetails: Mappable {
         direction     <- map["direction"]
         authToken <- map["authToken"]
         photoUrl  <- map["photoUrl"]
+        runningProgram  <- map["runningProgram"]
     }
 }

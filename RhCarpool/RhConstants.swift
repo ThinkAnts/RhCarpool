@@ -16,4 +16,12 @@ class RhConstants: NSObject {
     static let direction = "direction"
     static let authToken = "authToken"
     static let photoUrl = "photoUrl"
+    static let runningLocation = "runningLocation"
+    static let dateAndTime = "dateAndTime"
+    static let noOfSeats = "noOfSeats"
+    static let route = "route"
+    static let comments = "comments"
+    static let startingLocation = "startingLocation"
+    static let runningProgram = "runningProgram"
+    static let uidString = "uid"
 }

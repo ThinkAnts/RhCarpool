@@ -27,9 +27,23 @@ class FireBaseDataBase: NSObject {
                 var lUsers: UserDetails = Mapper<UserDetails>().map(JSON: user)!
                 lUsers.uidString = uid
                 UserDefaults.storeUserData(user: lUsers)
+                UserDefaults.storeUid(uid: uid)
                 completion("Success")
             } else {
                 let errorString = error?.localizedDescription ?? "Error In Saving User to DataBase"
+                completion(errorString)
+            }
+        }
+    }
+
+    func createNewCarPool(carPool: [String: String], carPoolId: String,
+                          completion: @escaping (_ success: String) -> Void) {
+        let userRef = ref.child("data/carpool").child(carPoolId)
+        userRef.setValue(carPool) {(error, _) in
+            if error == nil {
+                completion("Success")
+            } else {
+                let errorString = error?.localizedDescription ?? "Error In creating newcar pool to DataBase"
                 completion(errorString)
             }
         }
@@ -42,6 +56,7 @@ class FireBaseDataBase: NSObject {
                 var lUsers: UserDetails = Mapper<UserDetails>().map(JSON: jsonData)!
                 lUsers.uidString = uid
                 UserDefaults.storeUserData(user: lUsers)
+                UserDefaults.storeUid(uid: lUsers.uidString)
             }
         }
     }
@@ -69,5 +84,22 @@ class FireBaseDataBase: NSObject {
                 }
             }
         }
+    }
+
+    /*FIREBASE VALUE_EVENT_LISTENER */
+    func getModelFromFirebase(uid: String) {
+        let userRef = ref.child("data/carpool")
+//        userRef.observeSingleEvent(of: .value) {(snapShot) in
+//            if let jsonData = snapShot.value as? [String: Any] {
+//                var lUsers: UserDetails = Mapper<UserDetails>().map(JSON: jsonData)!
+//                lUsers.uidString = uid
+//                UserDefaults.storeUserData(user: lUsers)
+//                UserDefaults.storeUid(uid: lUsers.uidString)
+//            }
+//        }
+        userRef.queryOrdered(byChild: uid).observe(.childAdded, with: { snapshot in
+            let jsonData = snapshot.value as? [String: Any]
+            print(jsonData as Any)
+            })
     }
 }

@@ -35,6 +35,8 @@
 		18D513931EA3C3F000699821 /* UIColor+CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D513921EA3C3F000699821 /* UIColor+CustomColor.swift */; };
 		18DC87CE1EB38B3600021250 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC87CD1EB38B3600021250 /* NavigationController.swift */; };
 		18DC87D01EB38F0600021250 /* RhForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC87CF1EB38F0600021250 /* RhForgotPasswordController.swift */; };
+		18EE69651FA780DF00B6B5DF /* RhDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE69641FA780DF00B6B5DF /* RhDatePicker.swift */; };
+		18EE69671FA780FA00B6B5DF /* RhDatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE69661FA780FA00B6B5DF /* RhDatePicker.xib */; };
 		18F2DE1B1F77D3A800626025 /* FireBaseDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F2DE1A1F77D3A800626025 /* FireBaseDataBase.swift */; };
 		18F2DE1D1F77F95D00626025 /* RhConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F2DE1C1F77F95D00626025 /* RhConstants.swift */; };
 		18F2DE201F780E1000626025 /* RhSVProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F2DE1F1F780E1000626025 /* RhSVProgressHUD.swift */; };
@@ -94,6 +96,8 @@
 		18D513921EA3C3F000699821 /* UIColor+CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColor.swift"; sourceTree = "<group>"; };
 		18DC87CD1EB38B3600021250 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = Extensions/NavigationController.swift; sourceTree = "<group>"; };
 		18DC87CF1EB38F0600021250 /* RhForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RhForgotPasswordController.swift; path = Controllers/RhForgotPasswordController.swift; sourceTree = "<group>"; };
+		18EE69641FA780DF00B6B5DF /* RhDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RhDatePicker.swift; path = View/RhDatePicker.swift; sourceTree = "<group>"; };
+		18EE69661FA780FA00B6B5DF /* RhDatePicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RhDatePicker.xib; path = View/RhDatePicker.xib; sourceTree = "<group>"; };
 		18F2DE1A1F77D3A800626025 /* FireBaseDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FireBaseDataBase.swift; path = Model/FireBaseDataBase.swift; sourceTree = "<group>"; };
 		18F2DE1C1F77F95D00626025 /* RhConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhConstants.swift; sourceTree = "<group>"; };
 		18F2DE1F1F780E1000626025 /* RhSVProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RhSVProgressHUD.swift; path = Utilities/RhSVProgressHUD.swift; sourceTree = "<group>"; };
@@ -134,6 +138,8 @@
 				180174501F76DF7400CC7371 /* RhChooseImagePopUp.xib */,
 				18A60ACE1F7C0A890038EC20 /* ZoneView.swift */,
 				18A60AD01F7C0AFF0038EC20 /* ZoneView.xib */,
+				18EE69641FA780DF00B6B5DF /* RhDatePicker.swift */,
+				18EE69661FA780FA00B6B5DF /* RhDatePicker.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -391,6 +397,7 @@
 				18D5136A1EA3BFB800699821 /* Assets.xcassets in Resources */,
 				18D513651EA3BFB800699821 /* Main.storyboard in Resources */,
 				180174511F76DF7400CC7371 /* RhChooseImagePopUp.xib in Resources */,
+				18EE69671FA780FA00B6B5DF /* RhDatePicker.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +523,7 @@
 				183499311EB729C400E69F86 /* RhProfileViewController.swift in Sources */,
 				18F2DE1D1F77F95D00626025 /* RhConstants.swift in Sources */,
 				183499271EB63DEB00E69F86 /* RhCreateNewCarPoolController.swift in Sources */,
+				18EE69651FA780DF00B6B5DF /* RhDatePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

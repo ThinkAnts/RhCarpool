@@ -21,13 +21,14 @@ class RhProfileViewController: RhBaseViewController {
     @IBOutlet weak var fullName: UITextField!
     @IBOutlet weak var mobileNumber: UITextField!
     @IBOutlet weak var emailAddress: UITextField!
+    @IBOutlet weak var runningProgramField: UITextField!
+
     var imagePicker = UIImagePickerController()
-    var values = ["East", "West", "North", "South"]
-    let cellReuseIdentifier = "cell"
     var uidString: String?
     var photoUrlString: String?
     var isProfileImageChanged = false
     let storage = Storage.storage()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
@@ -71,6 +72,7 @@ class RhProfileViewController: RhBaseViewController {
         mobileNumber.text = user.mobileNumber
         zoneTextField.text = user.direction
         uidString = user.uidString
+        runningProgramField.text = user.runningProgram
         photoUrlString = user.photoUrl
         if let profileImage = URL(string: photoUrlString ?? "") {
             profileImageView.sd_setImage(with: profileImage, placeholderImage: #imageLiteral(resourceName: "face"))
@@ -79,6 +81,14 @@ class RhProfileViewController: RhBaseViewController {
 
     @IBAction func editProfilePicAction(_ sender: UIButton) {
         showAddFilePopUpView()
+    }
+
+    func fixImageOrientation(_ image: UIImage) -> UIImage {
+        UIGraphicsBeginImageContext(image.size)
+        image.draw(at: .zero)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage ?? image
     }
 
     func showAddFilePopUpView() {
@@ -144,9 +154,9 @@ class RhProfileViewController: RhBaseViewController {
 
     // MARK: - Upload datato firebase
     func uploadMedia(completion: @escaping (_ url: String?) -> Void) {
-        let ref = Storage.storage().reference(withPath: "media/userMainPhoto").child(uidString! + ".jpeg")
-
-        if let uploadData = UIImagePNGRepresentation(profileImageView.image!) {
+        let ref = Storage.storage().reference(withPath: "media/userMainPhoto").child(uidString! + ".png")
+        let uploadingImage = fixImageOrientation(profileImageView.image!)
+        if let uploadData = UIImagePNGRepresentation(uploadingImage) {
             ref.putData(uploadData, metadata: nil) { (metadata, error) in
                 if error != nil {
                     print("error")
@@ -164,6 +174,7 @@ class RhProfileViewController: RhBaseViewController {
                                              RhConstants.fullName: fullName.text ?? "",
                                              RhConstants.mobileNumber: mobileNumber.text ?? "",
                                              RhConstants.direction: zoneTextField.text ?? "",
+                                             RhConstants.runningProgram: runningProgramField.text ?? "",
                                              RhConstants.photoUrl: photoUrlString ?? ""]
 
         FireBaseDataBase.sharedInstance.updateUserData(user: userDetails, uidValue: uidString ?? "")
