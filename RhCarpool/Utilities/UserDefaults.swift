@@ -31,10 +31,23 @@ extension UserDefaults {
         defaults.set(uid, forKey: "uid")
     }
 
-    class func getUid () -> String? {
+    class func getUid () -> String! {
         let defaults = UserDefaults.standard
         if let uidString = defaults.string(forKey: "uid") {
             return uidString
+        }
+        return ""
+    }
+
+    class func storeProfileUrl (url: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(url, forKey: "profileUrl")
+    }
+
+    class func getProfileUrl () -> String! {
+        let defaults = UserDefaults.standard
+        if let profileUrl = defaults.string(forKey: "profileUrl") {
+            return profileUrl
         }
         return ""
     }

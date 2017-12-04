@@ -22,6 +22,7 @@ class RhDatePicker: UIView {
 
     override func awakeFromNib() {
         // Input data into the Array:
+        datePicker.minimumDate = Date()
         let button: UIButton = UIButton(frame: CGRect(x: 150, y: 140, width: 45, height: 45))
         button.setImage(#imageLiteral(resourceName: "tick"), for: .normal)
         button.addTarget(self, action: #selector(selectedDateAction), for: .touchUpInside)

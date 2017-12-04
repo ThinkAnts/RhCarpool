@@ -28,6 +28,7 @@ class RhProfileViewController: RhBaseViewController {
     var photoUrlString: String?
     var isProfileImageChanged = false
     let storage = Storage.storage()
+    var profileImage: UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,15 +141,23 @@ class RhProfileViewController: RhBaseViewController {
     @IBAction func saveAction(_ sender: Any) {
         RhSVProgressHUD.showIndicator(status: "Saving Data")
         if isProfileImageChanged == true {
-            uploadMedia {[weak self] (urlString) in
-                if urlString != "" {
-                    self?.photoUrlString = urlString
-                    self?.isProfileImageChanged = false
-                }
-                self?.updateUserData()
+            let background = DispatchQueue.global()
+            background.async {
+                self.saveProfileImageInBackground()
             }
-        } else {
-            self.updateUserData()
+        }
+        self.updateUserData()
+    }
+
+    func saveProfileImageInBackground() {
+        uploadMedia {[weak self] (urlString) in
+            if urlString != "" {
+                self?.photoUrlString = urlString
+                self?.isProfileImageChanged = false
+            }
+            FireBaseDataBase.sharedInstance.updateCarpoolData(profileUrl: (self?.photoUrlString)!,
+                                                              uid: self?.uidString ?? "",
+                                                              timeStamp: self?.getTodaysDate() ?? "")
         }
     }
 
@@ -203,9 +212,11 @@ extension RhProfileViewController: UINavigationControllerDelegate, UIImagePicker
     public func imagePickerController(_ picker: UIImagePickerController,
                                       didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
-            profileImageView.image = image
+            profileImage = image
+            profileImageView.image = profileImage
         } else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            profileImageView.image = image
+            profileImage = image
+            profileImageView.image = profileImage
         } else {
             print("Something went wrong")
         }

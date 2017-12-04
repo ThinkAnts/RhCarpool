@@ -21,18 +21,11 @@ class ViewController: RhBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.signInButton.backgroundColor = UIColor.rhGreen
-        //self.signInButton.layer.cornerRadius = 8.0
         self.forgotPassword.setTitleColor(UIColor.rhGreen, for: .normal)
         self.registerButton.setTitleColor(UIColor.rhGreen, for: .normal)
         let tapRecognizer = UITapGestureRecognizer(target: self,
                                                    action: #selector(RhBaseViewController.handleSingleTap))
         view.addGestureRecognizer(tapRecognizer)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     override func viewWillAppear(_ animated: Bool) {

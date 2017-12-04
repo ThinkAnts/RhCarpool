@@ -16,8 +16,9 @@ class RhBaseViewController: UIViewController {
     var ref: DatabaseReference?
     func setup(title: String) {
         navigationController?.navigationBar.barTintColor = UIColor.white
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:
-                                                                    UIColor.black]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black,
+                                                                   NSAttributedStringKey.font:
+                                                                   UIFont(name: RhConstants.SFReg, size: 16) as Any]
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysOriginal), style: UIBarButtonItemStyle.plain,
                                          target: self, action: #selector(RhBaseViewController.cancelAction))
         self.navigationItem.leftBarButtonItem = backButton
@@ -126,5 +127,19 @@ class RhBaseViewController: UIViewController {
 
     @objc func handleSingleTap() {
         self.view.endEditing(true)
+    }
+
+    func getTodaysDate() -> String {
+        var timeStampString = ""
+        let startOfToday = Calendar.current.startOfDay(for: Date())
+        let cal: Calendar = Calendar(identifier: .gregorian)
+        let todaysDate: Date = cal.date(bySettingHour: 0, minute: 0, second: 0, of: startOfToday)!
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .medium
+        let timeStamp = NSNumber(value: todaysDate.timeIntervalSince1970)
+        let numberFormat = NumberFormatter()
+        timeStampString = numberFormat.string(from: timeStamp) ?? ""
+        return timeStampString
     }
 }

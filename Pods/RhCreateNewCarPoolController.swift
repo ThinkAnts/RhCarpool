@@ -117,7 +117,9 @@ class RhCreateNewCarPoolController: RhBaseViewController {
                                           RhConstants.route: routeTextView.text ?? "",
                                           RhConstants.startingLocation: startingLocation.text ?? "",
                                           RhConstants.runningProgram: userDetails?.runningProgram ?? "",
-                                          RhConstants.uidString: UserDefaults.getUid() ?? "",
+                                          RhConstants.uidString: UserDefaults.getUid() ,
+                                          RhConstants.fullName: userDetails?.fullName ?? "",
+                                          RhConstants.photoUrl: userDetails?.photoUrl ?? "",
                                           RhConstants.dateAndTime: timeStamp]
         createNewCarPool(carPoolData: carPoolDict, carPoolId: randomString()) { [weak self] response in
             if response == "Success" {

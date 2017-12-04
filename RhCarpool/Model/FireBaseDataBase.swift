@@ -12,7 +12,9 @@ import ObjectMapper
 
 class FireBaseDataBase: NSObject {
     static let sharedInstance = FireBaseDataBase()
-    var userData: [UserDetails] = []
+    //var userData: [UserDetails] = []
+    let workDone = DispatchGroup()
+    fileprivate var carPoolArray = [CarPoolDetails]()
     var ref: DatabaseReference!
     //This prevents others from using the default '()' initializer for this class.
     private override init() {
@@ -87,19 +89,64 @@ class FireBaseDataBase: NSObject {
     }
 
     /*FIREBASE VALUE_EVENT_LISTENER */
-    func getModelFromFirebase(uid: String) {
-        let userRef = ref.child("data/carpool")
-//        userRef.observeSingleEvent(of: .value) {(snapShot) in
-//            if let jsonData = snapShot.value as? [String: Any] {
-//                var lUsers: UserDetails = Mapper<UserDetails>().map(JSON: jsonData)!
-//                lUsers.uidString = uid
-//                UserDefaults.storeUserData(user: lUsers)
-//                UserDefaults.storeUid(uid: lUsers.uidString)
-//            }
-//        }
-        userRef.queryOrdered(byChild: uid).observe(.childAdded, with: { snapshot in
-            let jsonData = snapshot.value as? [String: Any]
-            print(jsonData as Any)
-            })
+    func getModelFromFirebase(timeStamp: String,
+                              completion: @escaping (_ success: String, _ carPoolArrayData: [CarPoolDetails]) -> Void) {
+        let carRef = ref.child("data/carpool")
+        carRef.queryOrdered(byChild: "dateAndTime").queryStarting(atValue: timeStamp)
+              .observeSingleEvent(of: .value, with: {[weak self] snapshot in
+            let enumerator = snapshot.children
+                if self?.carPoolArray.count != 0 {
+                    self?.carPoolArray.removeAll()  //clear old values before adding
+                }
+            while let requiredValue = enumerator.nextObject() as? DataSnapshot {
+                guard let jsonData = requiredValue.value  as? [String: Any] else {
+                   return completion("Failed To Data", self?.carPoolArray ?? [CarPoolDetails]())
+                }
+                guard let carPoolDetails: CarPoolDetails = Mapper<CarPoolDetails>().map(JSON: jsonData) else {
+                  return completion("No Data present", self?.carPoolArray ?? [CarPoolDetails]())
+                }
+                self?.carPoolArray.append(carPoolDetails)
+            }
+            completion("Success", self?.carPoolArray ?? [CarPoolDetails]())
+        })
+    }
+
+    func getCarPoolDetails(timeStamp: String,
+                           completion: @escaping (_ success: String, _ carPoolArrayData: [CarPoolDetails]) -> Void) {
+
+        self.checkIfChildExists(ref: ref.child("data"), path: "carpool") { [weak self] (response) in
+            if response == "Success" {
+                DispatchQueue.main.async {
+                    self?.getModelFromFirebase(timeStamp: timeStamp, completion: { (response, carPoolData) in
+                        completion(response, carPoolData)
+                    })
+                }
+            } else {
+                completion(response, self?.carPoolArray ?? [CarPoolDetails]())
+            }
+        }
+    }
+
+    func checkIfChildExists(ref: DatabaseReference, path: String, completion: @escaping (_ success: String) -> Void) {
+        ref.observeSingleEvent(of: .value) { (snapShot) in
+            if snapShot.hasChild(path) {
+                completion("Success")
+            } else {
+                completion("No Data Present")
+            }
+        }
+    }
+
+    func updateCarpoolData(profileUrl: String, uid: String, timeStamp: String) {
+        let poolRef = ref.child("data/carpool")
+        poolRef.queryOrdered(byChild: "uid").queryStarting(atValue: timeStamp)
+                                            .queryEnding(atValue: uid)
+                                            .observeSingleEvent(of: .value) {(snapShot) in
+            let enumartor = snapShot.children
+            while let reqValue = enumartor.nextObject() as? DataSnapshot {
+               poolRef.child(reqValue.key).updateChildValues(["photoUrl": profileUrl])
+            }
+        }
+
     }
 }

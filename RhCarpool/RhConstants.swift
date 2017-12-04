@@ -24,4 +24,6 @@ class RhConstants: NSObject {
     static let startingLocation = "startingLocation"
     static let runningProgram = "runningProgram"
     static let uidString = "uid"
+    static let SFReg = "SanFranciscoDisplay-Regular"
+    static let SFBold = "SanFranciscoDisplay-Bold"
 }

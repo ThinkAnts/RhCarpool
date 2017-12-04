@@ -19,6 +19,10 @@
 		1834992F1EB6EC3300E69F86 /* RhWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834992E1EB6EC3300E69F86 /* RhWebViewController.swift */; };
 		183499311EB729C400E69F86 /* RhProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183499301EB729C400E69F86 /* RhProfileViewController.swift */; };
 		183499331EB72E9700E69F86 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183499321EB72E9700E69F86 /* UIImage.swift */; };
+		185D8BFA1FC9359E007062AE /* CarPoolDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185D8BF91FC9359E007062AE /* CarPoolDetails.swift */; };
+		185D8C071FD311E5007062AE /* SanFranciscoDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 185D8C041FD311E4007062AE /* SanFranciscoDisplay-Regular.otf */; };
+		185D8C081FD311E5007062AE /* SanFranciscoDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 185D8C051FD311E4007062AE /* SanFranciscoDisplay-Bold.otf */; };
+		185D8C091FD311E5007062AE /* SanFranciscoText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 185D8C061FD311E4007062AE /* SanFranciscoText-Regular.otf */; };
 		1868C4101F4F2ED700107B54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1868C40F1F4F2ED700107B54 /* GoogleService-Info.plist */; };
 		188454971F6EBBEC0076DA00 /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188454961F6EBBEC0076DA00 /* UserDetails.swift */; };
 		18A60ACF1F7C0A890038EC20 /* ZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A60ACE1F7C0A890038EC20 /* ZoneView.swift */; };
@@ -73,6 +77,10 @@
 		1834992E1EB6EC3300E69F86 /* RhWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RhWebViewController.swift; path = Controllers/RhWebViewController.swift; sourceTree = "<group>"; };
 		183499301EB729C400E69F86 /* RhProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RhProfileViewController.swift; path = Controllers/RhProfileViewController.swift; sourceTree = "<group>"; };
 		183499321EB72E9700E69F86 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImage.swift; path = Extensions/UIImage.swift; sourceTree = "<group>"; };
+		185D8BF91FC9359E007062AE /* CarPoolDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CarPoolDetails.swift; path = Model/CarPoolDetails.swift; sourceTree = "<group>"; };
+		185D8C041FD311E4007062AE /* SanFranciscoDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Regular.otf"; sourceTree = "<group>"; };
+		185D8C051FD311E4007062AE /* SanFranciscoDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Bold.otf"; sourceTree = "<group>"; };
+		185D8C061FD311E4007062AE /* SanFranciscoText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-Regular.otf"; sourceTree = "<group>"; };
 		1868C40F1F4F2ED700107B54 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		188454961F6EBBEC0076DA00 /* UserDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDetails.swift; path = Model/UserDetails.swift; sourceTree = "<group>"; };
 		18A60ACE1F7C0A890038EC20 /* ZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZoneView.swift; path = View/ZoneView.swift; sourceTree = "<group>"; };
@@ -153,11 +161,22 @@
 			name = TableViewCell;
 			sourceTree = "<group>";
 		};
+		185D8BFB1FD31075007062AE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				185D8C051FD311E4007062AE /* SanFranciscoDisplay-Bold.otf */,
+				185D8C041FD311E4007062AE /* SanFranciscoDisplay-Regular.otf */,
+				185D8C061FD311E4007062AE /* SanFranciscoText-Regular.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		188454951F6EBBA70076DA00 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				188454961F6EBBEC0076DA00 /* UserDetails.swift */,
 				18F2DE1A1F77D3A800626025 /* FireBaseDataBase.swift */,
+				185D8BF91FC9359E007062AE /* CarPoolDetails.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -187,6 +206,7 @@
 		18D5135E1EA3BFB800699821 /* RhCarpool */ = {
 			isa = PBXGroup;
 			children = (
+				185D8BFB1FD31075007062AE /* Resources */,
 				18F2DE1E1F780DE200626025 /* Utilities */,
 				1801744D1F76DF0800CC7371 /* View */,
 				188454951F6EBBA70076DA00 /* Model */,
@@ -390,6 +410,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				185D8C071FD311E5007062AE /* SanFranciscoDisplay-Regular.otf in Resources */,
+				185D8C081FD311E5007062AE /* SanFranciscoDisplay-Bold.otf in Resources */,
+				185D8C091FD311E5007062AE /* SanFranciscoText-Regular.otf in Resources */,
 				18A60AD11F7C0AFF0038EC20 /* ZoneView.xib in Resources */,
 				183499251EB5DE8000E69F86 /* RhCarpoolCell.xib in Resources */,
 				18D5136D1EA3BFB800699821 /* LaunchScreen.storyboard in Resources */,
@@ -514,6 +537,7 @@
 				18A60ACF1F7C0A890038EC20 /* ZoneView.swift in Sources */,
 				1834991E1EB4C25C00E69F86 /* RhRegisterViewController.swift in Sources */,
 				18DC87CE1EB38B3600021250 /* NavigationController.swift in Sources */,
+				185D8BFA1FC9359E007062AE /* CarPoolDetails.swift in Sources */,
 				18D513931EA3C3F000699821 /* UIColor+CustomColor.swift in Sources */,
 				18A60AD31F7D56D30038EC20 /* UserDefaults.swift in Sources */,
 				183499201EB5CFD900E69F86 /* RhHomeViewControllrt.swift in Sources */,
