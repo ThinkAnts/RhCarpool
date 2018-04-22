@@ -8,48 +8,39 @@
 
 import Foundation
 import UIKit
-import SDWebImage
 
 class RhCarPoolCell: UITableViewCell {
-
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var seat: UILabel!
-    @IBOutlet weak var route: UILabel!
-    @IBOutlet weak var startTime: UILabel!
-    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var routeLabel: UILabel!
+    @IBOutlet weak var dateTime: UILabel!
+    @IBOutlet weak var noOfSeats: UILabel!
+    @IBOutlet weak var mobileNumberButton: UIButton!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    override func layoutSubviews() {
         profileImage.layer.cornerRadius = profileImage.frame.size.width/2
-        profileImage.layer.masksToBounds = true
+        profileImage.clipsToBounds = true
+        let shadowPath = UIBezierPath(rect: mainView.bounds)
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.rhGreen.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 3)
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowRadius = 3
+        self.layer.shadowPath = shadowPath.cgPath
+        super.layoutSubviews()
     }
 
     func setupData(carPoolDetail: CarPoolDetails) {
-        self.title.text = carPoolDetail.runningLocation
-        self.seat.text = carPoolDetail.noOfSeats + " Seats"
-        self.route.text = carPoolDetail.route
-        self.startTime.text = stringFromTimeInterval(interval: carPoolDetail.dateAndTime)
-        self.name.text = carPoolDetail.fullName
-        let photoUrlString = carPoolDetail.photoUrl
-        if let profileImageUrl = URL(string: photoUrlString ) {
-            profileImage.sd_setImage(with: profileImageUrl, placeholderImage: #imageLiteral(resourceName: "face"))
-        }
-    }
-
-    func stringFromTimeInterval (interval: String) -> String {
-        if let timeInterval = TimeInterval(interval) {
-            let date = NSDate(timeIntervalSince1970: TimeInterval(timeInterval))
-            let dateFormatter = DateFormatter()
-            dateFormatter.timeStyle = DateFormatter.Style.medium //Set time style
-            dateFormatter.dateStyle = DateFormatter.Style.medium //Set date style
-            dateFormatter.timeZone = TimeZone.current
-            let localDate = dateFormatter.string(from: date as Date)
-            return localDate
+        nameLabel.text = carPoolDetail.fullName
+        routeLabel.text = carPoolDetail.startingLocation + " to " + carPoolDetail.runningLocation
+        dateTime.text = carPoolDetail.dateAndTime
+        noOfSeats.text = carPoolDetail.noOfSeats + " Seats available"
+        if carPoolDetail.runnersMobileNumber != "" {
+            mobileNumberButton.isHidden = false
+            mobileNumberButton.setTitle("+91 " + carPoolDetail.runnersMobileNumber, for: .normal)
         } else {
-            return "00:00:00"
+            mobileNumberButton.isHidden = true
         }
     }
 }

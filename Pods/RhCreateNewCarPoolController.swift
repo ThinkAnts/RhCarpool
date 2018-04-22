@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import CoreLocation
+
 
 class RhCreateNewCarPoolController: RhBaseViewController {
 
@@ -18,6 +20,8 @@ class RhCreateNewCarPoolController: RhBaseViewController {
     @IBOutlet weak var dateTimeField: UILabel!
     @IBOutlet weak var routeTextView: UITextView!
     @IBOutlet weak var commentsTextView: UITextView!
+    let locationManagerObject = UserLocationManager.SharedManager
+
 
     var isDatePickerViewAdded = false
     var datePickerView: RhDatePicker?
@@ -25,17 +29,19 @@ class RhCreateNewCarPoolController: RhBaseViewController {
     var zonePickerView: ZoneView?
     var userDetails: UserDetails?
     var timeStamp = ""
+    var dateTimeString = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         self.createButton.backgroundColor = UIColor.rhGreen
         let tapRecognizer = UITapGestureRecognizer(target: self,
                                                    action: #selector(RhBaseViewController.handleSingleTap))
         view.addGestureRecognizer(tapRecognizer)
-        self.addGestures()
+        addGestures()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         setup(title:"New CarPool")
+        enableGPS()
         loadProfileData()
     }
     override func didReceiveMemoryWarning() {
@@ -77,9 +83,9 @@ class RhCreateNewCarPoolController: RhBaseViewController {
         guard let dateObject = notification.object as? [String] else {
             return
         }
-        print(dateObject as Any)
         if dateObject[1] != "" {
             dateTimeField.text = dateObject[1]
+            dateTimeString = dateObject[1]
             dateTimeField.textColor = UIColor.black
         }
         timeStamp = dateObject[0]
@@ -120,7 +126,9 @@ class RhCreateNewCarPoolController: RhBaseViewController {
                                           RhConstants.uidString: UserDefaults.getUid() ,
                                           RhConstants.fullName: userDetails?.fullName ?? "",
                                           RhConstants.photoUrl: userDetails?.photoUrl ?? "",
-                                          RhConstants.dateAndTime: timeStamp]
+                                          RhConstants.dateAndTime: dateTimeString ,
+                                          RhConstants.timeStamp: timeStamp,
+                                          RhConstants.runnersMobileNumber: userDetails?.mobileNumber ?? ""]
         createNewCarPool(carPoolData: carPoolDict, carPoolId: randomString()) { [weak self] response in
             if response == "Success" {
                 print(response)
@@ -137,6 +145,34 @@ class RhCreateNewCarPoolController: RhBaseViewController {
             return true
         } else {
             return false
+        }
+    }
+
+    @IBAction func searchLocation(_ sender: Any) {
+
+        guard let searchVC = self.storyboard?.instantiateViewController(withIdentifier: "search")
+            as? SearchLocationViewController else {
+                return
+        }
+        searchVC.locationSelectedHandler = { [weak self] (locationInfo, address) in
+            self?.runningLocationTextField.text = address
+        }
+        navigationController?.pushViewController(searchVC, animated: true)
+    }
+    
+    @IBAction func fetchLocation(_ sender: Any) {
+        enableGPS()
+    }
+
+    func enableGPS() {
+        locationManagerObject.updateLocationHandler = { (locInfo) in
+            GoogleMapsSDKManager.getAddressForCoOrdinatesUsingGoogleMaps(latLong: locInfo, completionHandler: { [weak self] (addressInfo, error ) in
+                if error == nil {
+                    self?.startingLocation.text = addressInfo ?? ""
+                } else {
+                    self?.showAlertViewController(message: "Your location is not available !")
+                }
+            })
         }
     }
 }

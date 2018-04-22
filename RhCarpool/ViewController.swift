@@ -67,7 +67,7 @@ class ViewController: RhBaseViewController {
             return
         }
         if let email = emailTextField.text, let password = passwordTextField.text {
-            RhSVProgressHUD.showIndicator(status: "Validating")
+            RhSVProgressHUD.showIndicator(status: "VALIDATING")
             Auth.auth().signIn(withEmail: email, password: password, completion: {[weak self] (user, error) in
                 if user != nil {
                     FireBaseDataBase.sharedInstance.getUserData(uid: (user?.uid)!)

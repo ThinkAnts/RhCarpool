@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Firebase
 import FirebaseAuth
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let navigationController = UINavigationController.init(rootViewController: homeVC)
                 self.window?.rootViewController = navigationController
             }
+
+        registerForGoogleMapsSdk()  //Google Maps
         return true
     }
 
@@ -50,6 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return false
   }
+
+    // MARK: Google Maps SDK
+    func registerForGoogleMapsSdk() {
+        GMSServices.provideAPIKey(RhConstants.gmsAPIKey)
+    }
 
     // MARK: - Core Data stack
 

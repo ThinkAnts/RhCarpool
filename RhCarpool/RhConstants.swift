@@ -17,7 +17,9 @@ class RhConstants: NSObject {
     static let authToken = "authToken"
     static let photoUrl = "photoUrl"
     static let runningLocation = "runningLocation"
-    static let dateAndTime = "dateAndTime"
+    static let runnersMobileNumber = "runnersMobileNumber"
+    static let timeStamp = "timeStamp"
+    static let dateAndTime = "dateTime"
     static let noOfSeats = "noOfSeats"
     static let route = "route"
     static let comments = "comments"
@@ -26,4 +28,6 @@ class RhConstants: NSObject {
     static let uidString = "uid"
     static let SFReg = "SanFranciscoDisplay-Regular"
     static let SFBold = "SanFranciscoDisplay-Bold"
+    static let gmsAPIKey = "AIzaSyAebkME7_j_LOQ0RpDA0vS7E9EahQ2SVHg"
+    static let gmsPlaceSearchRadius = 10000
 }

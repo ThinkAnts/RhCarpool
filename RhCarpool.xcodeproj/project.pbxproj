@@ -19,15 +19,22 @@
 		1834992F1EB6EC3300E69F86 /* RhWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834992E1EB6EC3300E69F86 /* RhWebViewController.swift */; };
 		183499311EB729C400E69F86 /* RhProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183499301EB729C400E69F86 /* RhProfileViewController.swift */; };
 		183499331EB72E9700E69F86 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183499321EB72E9700E69F86 /* UIImage.swift */; };
+		18379A70208B329D0078D138 /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18379A6F208B329D0078D138 /* UserLocationManager.swift */; };
+		18379A72208B36110078D138 /* GoogleMapsSDKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18379A71208B36110078D138 /* GoogleMapsSDKManager.swift */; };
 		185D8BFA1FC9359E007062AE /* CarPoolDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185D8BF91FC9359E007062AE /* CarPoolDetails.swift */; };
 		185D8C071FD311E5007062AE /* SanFranciscoDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 185D8C041FD311E4007062AE /* SanFranciscoDisplay-Regular.otf */; };
 		185D8C081FD311E5007062AE /* SanFranciscoDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 185D8C051FD311E4007062AE /* SanFranciscoDisplay-Bold.otf */; };
 		185D8C091FD311E5007062AE /* SanFranciscoText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 185D8C061FD311E4007062AE /* SanFranciscoText-Regular.otf */; };
+		185D8C0B1FD59342007062AE /* RhUpdateCarpoolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185D8C0A1FD59342007062AE /* RhUpdateCarpoolController.swift */; };
 		1868C4101F4F2ED700107B54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1868C40F1F4F2ED700107B54 /* GoogleService-Info.plist */; };
 		188454971F6EBBEC0076DA00 /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188454961F6EBBEC0076DA00 /* UserDetails.swift */; };
 		18A60ACF1F7C0A890038EC20 /* ZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A60ACE1F7C0A890038EC20 /* ZoneView.swift */; };
 		18A60AD11F7C0AFF0038EC20 /* ZoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A60AD01F7C0AFF0038EC20 /* ZoneView.xib */; };
 		18A60AD31F7D56D30038EC20 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A60AD21F7D56D30038EC20 /* UserDefaults.swift */; };
+		18BA365A208B38950028D516 /* GooglePlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA3659208B38950028D516 /* GooglePlaces.swift */; };
+		18BA365C208B92C20028D516 /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA365B208B92C20028D516 /* SearchLocationViewController.swift */; };
+		18BA365F208B94C30028D516 /* RhLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA365D208B94C30028D516 /* RhLocationTableViewCell.swift */; };
+		18BA3660208B94C30028D516 /* RhLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BA365E208B94C30028D516 /* RhLocationTableViewCell.xib */; };
 		18D513601EA3BFB800699821 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D5135F1EA3BFB800699821 /* AppDelegate.swift */; };
 		18D513621EA3BFB800699821 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D513611EA3BFB800699821 /* ViewController.swift */; };
 		18D513651EA3BFB800699821 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D513631EA3BFB800699821 /* Main.storyboard */; };
@@ -39,6 +46,7 @@
 		18D513931EA3C3F000699821 /* UIColor+CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D513921EA3C3F000699821 /* UIColor+CustomColor.swift */; };
 		18DC87CE1EB38B3600021250 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC87CD1EB38B3600021250 /* NavigationController.swift */; };
 		18DC87D01EB38F0600021250 /* RhForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC87CF1EB38F0600021250 /* RhForgotPasswordController.swift */; };
+		18DDE3DF208B189A00C27B7A /* UtilitiesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DDE3DE208B189A00C27B7A /* UtilitiesProtocol.swift */; };
 		18EE69651FA780DF00B6B5DF /* RhDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE69641FA780DF00B6B5DF /* RhDatePicker.swift */; };
 		18EE69671FA780FA00B6B5DF /* RhDatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE69661FA780FA00B6B5DF /* RhDatePicker.xib */; };
 		18F2DE1B1F77D3A800626025 /* FireBaseDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F2DE1A1F77D3A800626025 /* FireBaseDataBase.swift */; };
@@ -77,16 +85,23 @@
 		1834992E1EB6EC3300E69F86 /* RhWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RhWebViewController.swift; path = Controllers/RhWebViewController.swift; sourceTree = "<group>"; };
 		183499301EB729C400E69F86 /* RhProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RhProfileViewController.swift; path = Controllers/RhProfileViewController.swift; sourceTree = "<group>"; };
 		183499321EB72E9700E69F86 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImage.swift; path = Extensions/UIImage.swift; sourceTree = "<group>"; };
+		18379A6F208B329D0078D138 /* UserLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserLocationManager.swift; path = Utilities/UserLocationManager.swift; sourceTree = "<group>"; };
+		18379A71208B36110078D138 /* GoogleMapsSDKManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GoogleMapsSDKManager.swift; path = Utilities/GoogleMapsSDKManager.swift; sourceTree = "<group>"; };
 		185D8BF91FC9359E007062AE /* CarPoolDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CarPoolDetails.swift; path = Model/CarPoolDetails.swift; sourceTree = "<group>"; };
 		185D8C041FD311E4007062AE /* SanFranciscoDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Regular.otf"; sourceTree = "<group>"; };
 		185D8C051FD311E4007062AE /* SanFranciscoDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Bold.otf"; sourceTree = "<group>"; };
 		185D8C061FD311E4007062AE /* SanFranciscoText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-Regular.otf"; sourceTree = "<group>"; };
+		185D8C0A1FD59342007062AE /* RhUpdateCarpoolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RhUpdateCarpoolController.swift; path = Controllers/RhUpdateCarpoolController.swift; sourceTree = "<group>"; };
 		1868C40F1F4F2ED700107B54 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		188454961F6EBBEC0076DA00 /* UserDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDetails.swift; path = Model/UserDetails.swift; sourceTree = "<group>"; };
 		18A60ACE1F7C0A890038EC20 /* ZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZoneView.swift; path = View/ZoneView.swift; sourceTree = "<group>"; };
 		18A60AD01F7C0AFF0038EC20 /* ZoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ZoneView.xib; path = View/ZoneView.xib; sourceTree = "<group>"; };
 		18A60AD21F7D56D30038EC20 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaults.swift; path = Utilities/UserDefaults.swift; sourceTree = "<group>"; };
 		18B00C5853F5B951E40F762C /* Pods_RhCarpool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RhCarpool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18BA3659208B38950028D516 /* GooglePlaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GooglePlaces.swift; path = Model/GooglePlaces.swift; sourceTree = "<group>"; };
+		18BA365B208B92C20028D516 /* SearchLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchLocationViewController.swift; path = Controllers/SearchLocationViewController.swift; sourceTree = "<group>"; };
+		18BA365D208B94C30028D516 /* RhLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RhLocationTableViewCell.swift; path = TableViewCell/RhLocationTableViewCell.swift; sourceTree = "<group>"; };
+		18BA365E208B94C30028D516 /* RhLocationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RhLocationTableViewCell.xib; path = TableViewCell/RhLocationTableViewCell.xib; sourceTree = "<group>"; };
 		18D5135C1EA3BFB800699821 /* RhCarpool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RhCarpool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D5135F1EA3BFB800699821 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18D513611EA3BFB800699821 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +119,7 @@
 		18D513921EA3C3F000699821 /* UIColor+CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColor.swift"; sourceTree = "<group>"; };
 		18DC87CD1EB38B3600021250 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = Extensions/NavigationController.swift; sourceTree = "<group>"; };
 		18DC87CF1EB38F0600021250 /* RhForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RhForgotPasswordController.swift; path = Controllers/RhForgotPasswordController.swift; sourceTree = "<group>"; };
+		18DDE3DE208B189A00C27B7A /* UtilitiesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UtilitiesProtocol.swift; path = Utilities/UtilitiesProtocol.swift; sourceTree = "<group>"; };
 		18EE69641FA780DF00B6B5DF /* RhDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RhDatePicker.swift; path = View/RhDatePicker.swift; sourceTree = "<group>"; };
 		18EE69661FA780FA00B6B5DF /* RhDatePicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RhDatePicker.xib; path = View/RhDatePicker.xib; sourceTree = "<group>"; };
 		18F2DE1A1F77D3A800626025 /* FireBaseDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FireBaseDataBase.swift; path = Model/FireBaseDataBase.swift; sourceTree = "<group>"; };
@@ -157,6 +173,8 @@
 			children = (
 				183499221EB5DE5000E69F86 /* RhCarPoolCell.swift */,
 				183499241EB5DE8000E69F86 /* RhCarpoolCell.xib */,
+				18BA365D208B94C30028D516 /* RhLocationTableViewCell.swift */,
+				18BA365E208B94C30028D516 /* RhLocationTableViewCell.xib */,
 			);
 			name = TableViewCell;
 			sourceTree = "<group>";
@@ -177,6 +195,7 @@
 				188454961F6EBBEC0076DA00 /* UserDetails.swift */,
 				18F2DE1A1F77D3A800626025 /* FireBaseDataBase.swift */,
 				185D8BF91FC9359E007062AE /* CarPoolDetails.swift */,
+				18BA3659208B38950028D516 /* GooglePlaces.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -206,6 +225,7 @@
 		18D5135E1EA3BFB800699821 /* RhCarpool */ = {
 			isa = PBXGroup;
 			children = (
+				18DDE3DD208B185500C27B7A /* Protocol */,
 				185D8BFB1FD31075007062AE /* Resources */,
 				18F2DE1E1F780DE200626025 /* Utilities */,
 				1801744D1F76DF0800CC7371 /* View */,
@@ -264,8 +284,18 @@
 				183499281EB6637A00E69F86 /* RhSettingsViewController.swift */,
 				1834992E1EB6EC3300E69F86 /* RhWebViewController.swift */,
 				183499301EB729C400E69F86 /* RhProfileViewController.swift */,
+				185D8C0A1FD59342007062AE /* RhUpdateCarpoolController.swift */,
+				18BA365B208B92C20028D516 /* SearchLocationViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		18DDE3DD208B185500C27B7A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				18DDE3DE208B189A00C27B7A /* UtilitiesProtocol.swift */,
+			);
+			name = Protocol;
 			sourceTree = "<group>";
 		};
 		18F2DE1E1F780DE200626025 /* Utilities */ = {
@@ -274,6 +304,8 @@
 				18F2DE1F1F780E1000626025 /* RhSVProgressHUD.swift */,
 				18F2DE1C1F77F95D00626025 /* RhConstants.swift */,
 				18A60AD21F7D56D30038EC20 /* UserDefaults.swift */,
+				18379A6F208B329D0078D138 /* UserLocationManager.swift */,
+				18379A71208B36110078D138 /* GoogleMapsSDKManager.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -370,6 +402,11 @@
 						DevelopmentTeam = 4254GLA3RG;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					18D513721EA3BFB800699821 = {
 						CreatedOnToolsVersion = 8.3.1;
@@ -420,6 +457,7 @@
 				18D5136A1EA3BFB800699821 /* Assets.xcassets in Resources */,
 				18D513651EA3BFB800699821 /* Main.storyboard in Resources */,
 				180174511F76DF7400CC7371 /* RhChooseImagePopUp.xib in Resources */,
+				18BA3660208B94C30028D516 /* RhLocationTableViewCell.xib in Resources */,
 				18EE69671FA780FA00B6B5DF /* RhDatePicker.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -460,9 +498,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RhCarpool/Pods-RhCarpool-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -476,6 +517,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RhCarpool/Pods-RhCarpool-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
@@ -486,6 +528,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
@@ -528,7 +571,10 @@
 				188454971F6EBBEC0076DA00 /* UserDetails.swift in Sources */,
 				18D513601EA3BFB800699821 /* AppDelegate.swift in Sources */,
 				1834992F1EB6EC3300E69F86 /* RhWebViewController.swift in Sources */,
+				18379A72208B36110078D138 /* GoogleMapsSDKManager.swift in Sources */,
+				18DDE3DF208B189A00C27B7A /* UtilitiesProtocol.swift in Sources */,
 				183499231EB5DE5000E69F86 /* RhCarPoolCell.swift in Sources */,
+				18BA365A208B38950028D516 /* GooglePlaces.swift in Sources */,
 				18F2DE201F780E1000626025 /* RhSVProgressHUD.swift in Sources */,
 				18DC87D01EB38F0600021250 /* RhForgotPasswordController.swift in Sources */,
 				183499291EB6637A00E69F86 /* RhSettingsViewController.swift in Sources */,
@@ -545,9 +591,13 @@
 				1834992D1EB6648400E69F86 /* RhBaseViewController.swift in Sources */,
 				18D513681EA3BFB800699821 /* RhCarpool.xcdatamodeld in Sources */,
 				183499311EB729C400E69F86 /* RhProfileViewController.swift in Sources */,
+				185D8C0B1FD59342007062AE /* RhUpdateCarpoolController.swift in Sources */,
 				18F2DE1D1F77F95D00626025 /* RhConstants.swift in Sources */,
 				183499271EB63DEB00E69F86 /* RhCreateNewCarPoolController.swift in Sources */,
+				18BA365C208B92C20028D516 /* SearchLocationViewController.swift in Sources */,
+				18BA365F208B94C30028D516 /* RhLocationTableViewCell.swift in Sources */,
 				18EE69651FA780DF00B6B5DF /* RhDatePicker.swift in Sources */,
+				18379A70208B329D0078D138 /* UserLocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,6 +763,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4254GLA3RG;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -748,6 +799,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4254GLA3RG;
 				INFOPLIST_FILE = RhCarpool/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -16,6 +16,10 @@ class RhBaseViewController: UIViewController {
     var ref: DatabaseReference?
     func setup(title: String) {
         navigationController?.navigationBar.barTintColor = UIColor.white
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+            navigationController?.navigationItem.largeTitleDisplayMode = .automatic
+        }
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black,
                                                                    NSAttributedStringKey.font:
                                                                    UIFont(name: RhConstants.SFReg, size: 16) as Any]
@@ -104,7 +108,7 @@ class RhBaseViewController: UIViewController {
 
     // MARK: - UIAlert View
     func showAlertViewController(message: String) {
-        if message.characters.count == 0 {
+        if message == "" {
             return
         }
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.alert)

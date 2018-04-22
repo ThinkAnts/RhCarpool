@@ -92,7 +92,7 @@ class FireBaseDataBase: NSObject {
     func getModelFromFirebase(timeStamp: String,
                               completion: @escaping (_ success: String, _ carPoolArrayData: [CarPoolDetails]) -> Void) {
         let carRef = ref.child("data/carpool")
-        carRef.queryOrdered(byChild: "dateAndTime").queryStarting(atValue: timeStamp)
+        carRef.queryOrdered(byChild: "timeStamp").queryStarting(atValue: timeStamp)
               .observeSingleEvent(of: .value, with: {[weak self] snapshot in
             let enumerator = snapshot.children
                 if self?.carPoolArray.count != 0 {

@@ -10,4 +10,6 @@ pod 'OpenSans'
 pod 'SVProgressHUD'
 pod 'ObjectMapper', '~> 2.2'
 pod 'SDWebImage','~>4.0'
+pod 'GoogleMaps'
+pod 'Alamofire', '~> 4.7'
 end

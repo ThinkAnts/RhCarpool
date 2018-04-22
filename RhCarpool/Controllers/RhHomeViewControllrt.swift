@@ -12,11 +12,13 @@ import UIKit
 class RhHomeViewController: RhBaseViewController {
     @IBOutlet weak var carPoolTableView: UITableView!
     @IBOutlet weak var carPoolSegment: UISegmentedControl!
+    @IBOutlet weak var noItemsView: UIView!
     fileprivate var carPoolList = [CarPoolDetails]()
     fileprivate var myCarPoolList = [CarPoolDetails]()
     fileprivate let buttonBar = UIView()
     fileprivate var selectedSegmentIndex = 0
     fileprivate var otherCarPoolList = [CarPoolDetails]()
+
     override func viewDidLoad() {
         carPoolTableView.register(UINib(nibName: "RhCarpoolCell", bundle: nil), forCellReuseIdentifier: "carpool")
         setSegmentView()
@@ -31,9 +33,6 @@ class RhHomeViewController: RhBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         setup(title: "RH CarPool")
         loadInitialView()
-        carPoolTableView.isHidden = true
-        carPoolSegment.isHidden = true
-        self.buttonBar.isHidden = true
         fetchCarPoolDetails(timeStamp: getTodaysDate())
     }
 
@@ -56,18 +55,20 @@ class RhHomeViewController: RhBaseViewController {
     }
 
     func fetchCarPoolDetails(timeStamp: String) {
-        RhSVProgressHUD.showIndicator(status: "Fetching Data")
+        RhSVProgressHUD.showIndicator(status: "LOADING")
         FireBaseDataBase.sharedInstance.getCarPoolDetails(timeStamp: timeStamp,
                                                              completion: { [weak self] response, carPoolData in
-            if response == "Success", carPoolData.count > 0 {
-                RhSVProgressHUD.hideIndicator()
+            if response == "Success" {
                 self?.carPoolList = carPoolData
                 self?.differentiateCarpools()
+            } else if response == "No Data Present" {
+                self?.setBackGroundView(count: 0, segment: 0)
             } else {
                 // Error Block
-                RhSVProgressHUD.hideIndicator()
                 self?.showAlertViewController(message: response)
             }
+            RhSVProgressHUD.hideIndicator()
+
         })
     }
 
@@ -81,10 +82,9 @@ class RhHomeViewController: RhBaseViewController {
                     self.otherCarPoolList.append(carPoolDetail)
                 }
             }
-            self.carPoolTableView.isHidden = false
-            self.carPoolSegment.isHidden = false
-            self.buttonBar.isHidden = false
             self.carPoolTableView.reloadData()
+        } else {
+            setBackGroundView(count: 0, segment: 0)
         }
     }
     @objc func addAction() {
@@ -120,7 +120,7 @@ class RhHomeViewController: RhBaseViewController {
         buttonBar.backgroundColor = UIColor.rhGreen
         view.addSubview(buttonBar)
         buttonBar.topAnchor.constraint(equalTo: carPoolSegment.bottomAnchor).isActive = true
-        buttonBar.heightAnchor.constraint(equalToConstant: 5).isActive = true
+        buttonBar.heightAnchor.constraint(equalToConstant: 3).isActive = true
         buttonBar.leftAnchor.constraint(equalTo: carPoolSegment.leftAnchor).isActive = true
         buttonBar.widthAnchor.constraint(equalTo: carPoolSegment.widthAnchor,
                                          multiplier: 1 / CGFloat(carPoolSegment.numberOfSegments)).isActive = true
@@ -138,6 +138,14 @@ class RhHomeViewController: RhBaseViewController {
                                                 UIFont(name: RhConstants.SFBold, size: 14) as Any],
                                               for: .selected)
     }
+
+    func setBackGroundView(count: Int, segment: Int) {
+        if segment == 0 || segment == 1, count == 0 {
+            carPoolTableView.backgroundView = noItemsView
+        } else {
+            carPoolTableView.backgroundView = nil
+        }
+    }
 }
 extension RhHomeViewController: UITableViewDelegate, UITableViewDataSource {
 
@@ -148,36 +156,27 @@ extension RhHomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if selectedSegmentIndex == 0 {
-          return self.myCarPoolList.count
+          return myCarPoolList.count
+        } else if selectedSegmentIndex == 1 {
+            return otherCarPoolList.count
         }
-        return self.otherCarPoolList.count
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let carPoolCell = tableView.dequeueReusableCell(withIdentifier: "carpool") as? RhCarPoolCell else {
             return UITableViewCell()
         }
+        var carPoolDetail = CarPoolDetails()
         if selectedSegmentIndex == 0 {
-           let carPoolDetail = self.myCarPoolList[indexPath.row]
+           carPoolDetail = self.myCarPoolList[indexPath.row]
             carPoolCell.setupData(carPoolDetail: carPoolDetail)
             return carPoolCell
         } else if selectedSegmentIndex == 1 {
-          let carPoolDetail = self.otherCarPoolList[indexPath.row]
+          carPoolDetail = self.otherCarPoolList[indexPath.row]
           carPoolCell.setupData(carPoolDetail: carPoolDetail)
           return carPoolCell
         }
         return carPoolCell
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150.0
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.0
-    }
-
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.00001
     }
 }

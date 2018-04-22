@@ -21,13 +21,17 @@ struct CarPoolDetails: Mappable {
     var direction: String = ""
     var fullName: String = ""
     var photoUrl: String = ""
+    var runnersMobileNumber: String = ""
 
     init?(map: Map) {
     }
 
+    init() {
+    }
+
     mutating func mapping(map: Map) {
         runningLocation   <- map["runningLocation"]
-        dateAndTime      <- map["dateAndTime"]
+        dateAndTime      <- map["dateTime"]
         noOfSeats   <- map["noOfSeats"]
         route  <- map["route"]
         comments     <- map["comments"]
@@ -37,5 +41,6 @@ struct CarPoolDetails: Mappable {
         runningProgram  <- map["runningProgram"]
         fullName <- map["fullName"]
         photoUrl <- map["photoUrl"]
+        runnersMobileNumber <- map["runnersMobileNumber"]
     }
 }
